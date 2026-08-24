@@ -1,0 +1,29 @@
+---
+layout: default
+title: 想法记录
+---
+<div class="page-header">
+  <div class="breadcrumb"><a href="{{ '/' | relative_url }}">主页</a> / 想法记录</div>
+  <h1>想法记录</h1>
+  <p>AI 产品分析、项目复盘、学习笔记 —— 记录成长路上的思考。</p>
+</div>
+
+<div class="articles-list">
+  {% assign sorted = site.articles | sort: 'date' | reverse %}
+  {% if sorted.size == 0 %}
+  <p style="color:var(--text-muted);font-size:14px;padding:20px 0;">还没有文章，去 <a href="{{ '/admin/' | relative_url }}" style="color:var(--accent);">管理后台</a> 新增第一篇吧。</p>
+  {% else %}
+  {% for article in sorted %}
+  <a href="{{ article.url | relative_url }}" class="article-card">
+    <div class="article-card-date">{{ article.date }}</div>
+    <h3 class="article-card-title">{{ article.title }}</h3>
+    {% if article.excerpt %}
+    <p class="article-card-excerpt">{{ article.excerpt | strip_html | truncate: 120 }}</p>
+    {% endif %}
+    {% if article.category %}
+    <span class="article-card-category">{{ article.category }}</span>
+    {% endif %}
+  </a>
+  {% endfor %}
+  {% endif %}
+</div>

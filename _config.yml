@@ -10,11 +10,14 @@ exclude:
   - .gitignore
   - photo.jpg
 
-# 比赛记录集合
+# 集合定义
 collections:
   competitions:
     output: true
     permalink: /competitions/:slug/
+  articles:
+    output: true
+    permalink: /articles/:slug/
 
 # 默认 frontmatter 值
 defaults:
@@ -23,3 +26,8 @@ defaults:
       type: "competitions"
     values:
       layout: "competition"
+  - scope:
+      path: ""
+      type: "articles"
+    values:
+      layout: "article"
