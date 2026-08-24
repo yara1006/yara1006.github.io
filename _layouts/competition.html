@@ -1,0 +1,51 @@
+---
+layout: default
+---
+<div class="competition-detail">
+  <header class="comp-header">
+    <div class="comp-meta">
+      <span class="comp-date">{{ page.date }}</span>
+      <span class="comp-award">{{ page.award }}</span>
+    </div>
+    <h1 class="comp-title">{{ page.title }}</h1>
+    {% if page.title_en %}
+    <p class="comp-title-en">{{ page.title_en }}</p>
+    {% endif %}
+  </header>
+
+  {% if page.intro %}
+  <section class="comp-section">
+    <h2>比赛简介</h2>
+    <div class="comp-content">{{ page.intro | markdownify }}</div>
+  </section>
+  {% endif %}
+
+  {% if page.content_text %}
+  <section class="comp-section">
+    <h2>比赛内容</h2>
+    <div class="comp-content">{{ page.content_text | markdownify }}</div>
+  </section>
+  {% endif %}
+
+  {% if page.role %}
+  <section class="comp-section">
+    <h2>我的角色</h2>
+    <div class="comp-content">{{ page.role | markdownify }}</div>
+  </section>
+  {% endif %}
+
+  {% if page.reflection %}
+  <section class="comp-section">
+    <h2>收获与反思</h2>
+    <div class="comp-reflection">{{ page.reflection | markdownify }}</div>
+  </section>
+  {% endif %}
+
+  {% if page.tags %}
+  <div class="comp-tags">
+    {% for tag in page.tags %}
+    <span class="comp-tag">{{ tag }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
