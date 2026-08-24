@@ -43,6 +43,8 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); overflow-x: clip; }
 
+::selection { background: var(--accent-soft); color: var(--accent); }
+
 body {
   font-family: var(--font);
   background: var(--bg);
@@ -63,13 +65,70 @@ strong { font-weight: 600; }
 /* ===== NAV ===== */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  height: var(--nav-h);
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
+  height: var(--nav-h); isolation: isolate;
 }
-[data-theme="dark"] .nav { background: rgba(10,11,13,0.85); }
+.nav-blur {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: calc(var(--nav-h) + 28px); z-index: -1; pointer-events: none;
+  overflow: hidden;
+}
+.nav-blur-layer {
+  position: absolute; inset: 0;
+  background: transparent;
+  backdrop-filter: blur(var(--nav-blur));
+  -webkit-backdrop-filter: blur(var(--nav-blur));
+  mask-repeat: no-repeat; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; -webkit-mask-size: 100% 100%;
+}
+.nav-blur-layer--1 {
+  --nav-blur: 4px;
+  mask-image: linear-gradient(to bottom, transparent 0%, transparent 40%, #000 60%, #000 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 40%, #000 60%, #000 80%, transparent 100%);
+}
+.nav-blur-layer--2 {
+  --nav-blur: 6px;
+  mask-image: linear-gradient(to bottom, transparent 0%, transparent 20%, #000 40%, #000 60%, transparent 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 20%, #000 40%, #000 60%, transparent 80%, transparent 100%);
+}
+.nav-blur-layer--3 {
+  --nav-blur: 10px;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 40%, transparent 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 40%, transparent 60%, transparent 100%);
+}
+.nav-blur-layer--4 {
+  --nav-blur: 18px;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 20%, transparent 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 20%, transparent 40%, transparent 100%);
+}
+.nav-blur-layer--5 {
+  --nav-blur: 34px;
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 20%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 20%, transparent 100%);
+}
+.nav-blur-fade {
+  position: absolute; inset: -16px 0;
+  height: calc(100% + 16px);
+  pointer-events: none;
+  filter: blur(10px);
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,1) 0%,
+    rgba(255,255,255,.88) 28%,
+    rgba(255,255,255,.5) 58%,
+    rgba(255,255,255,.18) 82%,
+    transparent 100%
+  );
+}
+[data-theme="dark"] .nav-blur-fade {
+  background: linear-gradient(
+    to bottom,
+    rgba(10,11,13,1) 0%,
+    rgba(10,11,13,.88) 28%,
+    rgba(10,11,13,.5) 58%,
+    rgba(10,11,13,.18) 82%,
+    transparent 100%
+  );
+}
 .nav-inner {
   max-width: 1120px; margin: 0 auto; padding: 0 28px;
   height: var(--nav-h); display: flex; align-items: center; justify-content: space-between;
@@ -245,9 +304,13 @@ section.block.soft { background: var(--bg-soft); border-top: 1px solid var(--lin
 .proj-card {
   background: var(--bg-soft); border: 1px solid var(--line);
   border-radius: var(--radius-md); padding: 28px;
-  transition: .15s;
+  transition: border-color .25s, transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .35s;
 }
-.proj-card:hover { border-color: var(--accent); }
+.proj-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -12px rgba(11,87,208,.15);
+}
 .proj-title {
   font-size: 17px; font-weight: 500; letter-spacing: -.015em;
   margin-bottom: 10px; color: var(--ink);
@@ -281,15 +344,36 @@ section.block.soft { background: var(--bg-soft); border-top: 1px solid var(--lin
 .skill-card {
   background: var(--bg-soft); border: 1px solid var(--line);
   border-radius: var(--radius-md); padding: 24px;
+  transition: border-color .25s, transform .35s cubic-bezier(.2,.7,.3,1);
+}
+.skill-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
 }
 .skill-card-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
 .skill-card-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+
+/* ===== INSIGHTS ===== */
+.insight-card {
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: var(--radius-md); padding: 28px; margin-bottom: 16px;
+  transition: border-color .25s, transform .35s cubic-bezier(.2,.7,.3,1);
+}
+.insight-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
 
 /* ===== RESUME CTA ===== */
 .resume-cta {
   text-align: center; padding: 48px 32px;
   background: var(--bg-soft); border: 1px solid var(--line);
   border-radius: var(--radius-md);
+  transition: border-color .25s, transform .35s cubic-bezier(.2,.7,.3,1);
+}
+.resume-cta:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
 }
 .resume-cta h3 { font-size: 24px; font-weight: 400; letter-spacing: -.035em; margin-bottom: 8px; }
 .resume-cta p { font-size: 14px; color: var(--ink-soft); margin-bottom: 24px; }
@@ -297,9 +381,13 @@ section.block.soft { background: var(--bg-soft); border-top: 1px solid var(--lin
   display: inline-flex; align-items: center; gap: 6px;
   padding: 10px 24px; background: var(--accent); color: #fff;
   border-radius: 999px; font-size: 14px; font-weight: 500;
-  text-decoration: none; transition: .15s;
+  text-decoration: none; transition: background .2s, transform .2s;
 }
-.btn-primary:hover { opacity: .9; text-decoration: none; }
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--accent) 85%, #000);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
 
 /* ===== FOOTER ===== */
 footer {
@@ -325,6 +413,14 @@ footer {
 <body>
 
 <nav class="nav">
+  <div class="nav-blur">
+    <div class="nav-blur-layer nav-blur-layer--1"></div>
+    <div class="nav-blur-layer nav-blur-layer--2"></div>
+    <div class="nav-blur-layer nav-blur-layer--3"></div>
+    <div class="nav-blur-layer nav-blur-layer--4"></div>
+    <div class="nav-blur-layer nav-blur-layer--5"></div>
+    <div class="nav-blur-fade"></div>
+  </div>
   <div class="nav-inner">
     <a href="#" class="nav-logo">Hannah</a>
     <div class="nav-links">

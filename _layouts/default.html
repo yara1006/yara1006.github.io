@@ -26,13 +26,22 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 16px);overflow-x:clip}
+::selection{background:var(--accent-soft);color:var(--accent)}
 body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:15px;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;text-underline-offset:3px}
 strong{font-weight:600}.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
 
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);background:rgba(255,255,255,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-[data-theme="dark"] .nav{background:rgba(10,11,13,0.85)}
-.nav-inner{max-width:1120px;margin:0 auto;padding:0 28px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);isolation:isolate}
+.nav-blur{position:absolute;top:0;left:0;right:0;height:calc(var(--nav-h) + 28px);z-index:-1;pointer-events:none;overflow:hidden}
+.nav-blur-layer{position:absolute;inset:0;background:transparent;backdrop-filter:blur(var(--nav-blur));-webkit-backdrop-filter:blur(var(--nav-blur));mask-repeat:no-repeat;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;-webkit-mask-size:100% 100%}
+.nav-blur-layer--1{--nav-blur:4px;mask-image:linear-gradient(to bottom,transparent 0%,transparent 40%,#000 60%,#000 80%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,transparent 40%,#000 60%,#000 80%,transparent 100%)}
+.nav-blur-layer--2{--nav-blur:6px;mask-image:linear-gradient(to bottom,transparent 0%,transparent 20%,#000 40%,#000 60%,transparent 80%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,transparent 20%,#000 40%,#000 60%,transparent 80%,transparent 100%)}
+.nav-blur-layer--3{--nav-blur:10px;mask-image:linear-gradient(to bottom,transparent 0%,#000 20%,#000 40%,transparent 60%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 20%,#000 40%,transparent 60%,transparent 100%)}
+.nav-blur-layer--4{--nav-blur:18px;mask-image:linear-gradient(to bottom,#000 0%,#000 20%,transparent 40%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 20%,transparent 40%,transparent 100%)}
+.nav-blur-layer--5{--nav-blur:34px;mask-image:linear-gradient(to bottom,#000 0%,transparent 20%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 20%,transparent 100%)}
+.nav-blur-fade{position:absolute;inset:-16px 0;height:calc(100% + 16px);pointer-events:none;filter:blur(10px);background:linear-gradient(to bottom,rgba(255,255,255,1) 0%,rgba(255,255,255,.88) 28%,rgba(255,255,255,.5) 58%,rgba(255,255,255,.18) 82%,transparent 100%)}
+[data-theme="dark"] .nav-blur-fade{background:linear-gradient(to bottom,rgba(10,11,13,1) 0%,rgba(10,11,13,.88) 28%,rgba(10,11,13,.5) 58%,rgba(10,11,13,.18) 82%,transparent 100%)}
+.nav-inner{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 28px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-size:14.5px;font-weight:500;letter-spacing:-.01em;color:var(--ink)}.nav-logo:hover{text-decoration:none;opacity:.7}
 .nav-links{display:flex;gap:24px;align-items:center}
 .nav-links a{font-size:13px;font-weight:400;color:var(--ink-soft);letter-spacing:.01em;transition:color .2s;padding:6px 0;position:relative}
@@ -117,6 +126,14 @@ footer{padding:40px 0;border-top:1px solid var(--line);text-align:center;font-si
 </head>
 <body>
 <nav class="nav">
+  <div class="nav-blur">
+    <div class="nav-blur-layer nav-blur-layer--1"></div>
+    <div class="nav-blur-layer nav-blur-layer--2"></div>
+    <div class="nav-blur-layer nav-blur-layer--3"></div>
+    <div class="nav-blur-layer nav-blur-layer--4"></div>
+    <div class="nav-blur-layer nav-blur-layer--5"></div>
+    <div class="nav-blur-fade"></div>
+  </div>
   <div class="nav-inner">
     <a href="{{ '/' | relative_url }}" class="nav-logo">Hannah</a>
     <div class="nav-links">
