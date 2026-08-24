@@ -1,7 +1,7 @@
 ---
 title: "蓝桥杯全国软件和信息技术专业人才大赛 · Java 赛道"
 title_en: "Lanqiao Cup National Software & IT Talent Competition · Java Track"
-date: "2026.04"
+comp_date: "2026.04"
 award: "🥈 省级二等奖"
 award_en: "Provincial Second Prize"
 intro: |

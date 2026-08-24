@@ -1,7 +1,7 @@
 ---
 title: "全国大学生统计建模大赛"
 title_en: "National College Student Statistical Modeling Competition"
-date: "2025.05"
+comp_date: "2025.05"
 award: "🏆 校级一等奖"
 award_en: "University First Prize"
 intro: |

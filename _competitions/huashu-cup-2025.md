@@ -1,7 +1,7 @@
 ---
 title: "华数杯全国大学生数学建模竞赛"
 title_en: "Huashu Cup National Mathematical Contest in Modeling"
-date: "2025.08"
+comp_date: "2025.08"
 award: "🥉 全国三等奖"
 award_en: "National Third Prize"
 intro: |

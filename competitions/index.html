@@ -9,10 +9,10 @@ title: 比赛记录
 </div>
 
 <div class="timeline">
-  {% assign sorted = site.competitions | sort: 'date' | reverse %}
+  {% assign sorted = site.competitions | sort: 'comp_date' | reverse %}
   {% for comp in sorted %}
   <div class="tl-item">
-    <div class="tl-date">{{ comp.date }}</div>
+    <div class="tl-date">{{ comp.comp_date }}</div>
     <div class="tl-title">{{ comp.title }}</div>
     <div class="tl-award">{{ comp.award }}</div>
     <p class="tl-desc">{{ comp.intro | truncate: 120 }}</p>

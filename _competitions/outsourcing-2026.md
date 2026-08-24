@@ -1,7 +1,7 @@
 ---
 title: "中国大学生服务外包创新创业大赛"
 title_en: "China Collegiate Outsourcing Service Innovation Competition"
-date: "2026.05"
+comp_date: "2026.05"
 award: "🥉 区域赛区三等奖（D 类）"
 award_en: "Regional Third Prize (Class D)"
 intro: |

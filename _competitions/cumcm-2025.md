@@ -1,7 +1,7 @@
 ---
 title: "高教社杯全国大学生数学建模竞赛"
 title_en: "Higher Education Press Cup National Mathematical Contest in Modeling"
-date: "2025.09"
+comp_date: "2025.09"
 award: "🥈 广东省二等奖"
 award_en: "Guangdong Provincial Second Prize"
 intro: |
