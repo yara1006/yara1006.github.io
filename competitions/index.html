@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>比赛记录 | 杨韩冰</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#fafafa; --card:#fff; --text:#1a1a2e; --text-secondary:#555770; --text-muted:#8b8fa3; --accent:#2563eb; --accent-light:#dbeafe; --border:#e8e8ee; --radius:10px; }
+[data-theme="dark"] { --bg:#0f0f14; --card:#1a1a24; --text:#e8e8f0; --text-secondary:#a0a0b8; --text-muted:#6b6b80; --accent:#60a5fa; --accent-light:#1e3a5f; --border:#2a2a3a; }
+*{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
+body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px}
+[data-theme="dark"] nav{background:rgba(15,15,20,0.85)}
+.nav-inner{max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-family:'Crimson Pro','Noto Serif SC',serif;font-size:18px;font-weight:700;color:var(--text);text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-links{display:flex;gap:20px;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:500;transition:0.15s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--accent)}
+.nav-toggles{display:flex;align-items:center;gap:6px}
+.lang-toggle{display:flex;background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.lang-btn{padding:4px 10px;font-size:12px;font-weight:600;border:none;background:transparent;color:var(--text-muted);cursor:pointer;transition:0.15s;font-family:inherit}
+.lang-btn.active{background:var(--accent);color:#fff}
+.theme-btn{width:32px;height:32px;border-radius:6px;border:1px solid var(--border);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:0.15s}
+.theme-btn:hover{border-color:var(--accent)}
+.theme-icon-dark{display:none}
+[data-theme="dark"] .theme-icon-light{display:none}
+[data-theme="dark"] .theme-icon-dark{display:inline}
+
+main{max-width:800px;margin:0 auto;padding:0 24px}
+
+.page-header{padding:100px 0 40px}
+.page-header h1{font-family:'Crimson Pro','Noto Serif SC',serif;font-size:36px;font-weight:700;margin-bottom:8px}
+.page-header p{font-size:15px;color:var(--text-secondary)}
+.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:12px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--accent)}
+
+.timeline{padding:20px 0 60px;position:relative}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border)}
+.tl-item{position:relative;padding-left:28px;margin-bottom:32px}
+.tl-item::before{content:'';position:absolute;left:-5px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl-date{font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:4px}
+.tl-title{font-family:'Crimson Pro','Noto Serif SC',serif;font-size:18px;font-weight:700;margin-bottom:4px}
+.tl-award{font-size:14px;font-weight:600;color:var(--accent);margin-bottom:8px}
+.tl-desc{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:10px}
+.tl-link{display:inline-flex;align-items:center;gap:4px;color:var(--accent);font-size:13px;font-weight:600;text-decoration:none}
+.tl-link:hover{text-decoration:underline}
+
+footer{padding:40px 0;border-top:1px solid var(--border);text-align:center;font-size:13px;color:var(--text-muted)}
+
+@media(max-width:640px){.page-header h1{font-size:28px}.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">杨韩冰</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/">主页</a></li>
+        <li><a href="/competitions/" class="active">比赛</a></li>
+      </ul>
+      <div class="nav-toggles">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="themeToggle"><span class="theme-icon-light">🌙</span><span class="theme-icon-dark">☀️</span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="page-header">
+    <div class="breadcrumb"><a href="/">主页</a> / 比赛记录</div>
+    <h1 data-zh="比赛记录" data-en="Competitions">比赛记录</h1>
+    <p data-zh="从校赛到美赛，每一段经历都在塑造我的数据思维和问题解决能力。" data-en="From school-level to international competitions, each experience shaped my data thinking and problem-solving skills.">从校赛到美赛，每一段经历都在塑造我的数据思维和问题解决能力。</p>
+  </div>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-date">2025.05</div>
+      <div class="tl-title" data-zh="全国大学生统计建模大赛" data-en="National College Student Statistical Modeling Competition">全国大学生统计建模大赛</div>
+      <div class="tl-award" data-zh="🏆 校级一等奖" data-en="🏆 University First Prize">🏆 校级一等奖</div>
+      <p class="tl-desc" data-zh="首次参加统计建模竞赛，掌握了从数据收集、清洗到建模分析的完整流程。这段经历让我理解了数据驱动决策的基本方法论。" data-en="First statistical modeling competition. Learned the complete workflow from data collection, cleaning to modeling and analysis. This experience taught me the fundamentals of data-driven decision making.">首次参加统计建模竞赛，掌握了从数据收集、清洗到建模分析的完整流程。这段经历让我理解了数据驱动决策的基本方法论。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2025.08</div>
+      <div class="tl-title" data-zh="华数杯全国大学生数学建模竞赛" data-en="Huashu Cup National Mathematical Contest in Modeling">华数杯全国大学生数学建模竞赛</div>
+      <div class="tl-award" data-zh=" 全国三等奖" data-en="🥉 National Third Prize">🥉 全国三等奖</div>
+      <p class="tl-desc" data-zh="首次参加全国性数学建模竞赛。三天内完成从问题分析、模型构建到论文撰写的全过程，锻炼了团队协作和高压下的快速决策能力。" data-en="First national-level math modeling contest. Completed problem analysis, model building, and paper writing within 3 days. Built teamwork and rapid decision-making under pressure.">首次参加全国性数学建模竞赛。三天内完成从问题分析、模型构建到论文撰写的全过程，锻炼了团队协作和高压下的快速决策能力。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2025.09</div>
+      <div class="tl-title" data-zh="高教社杯全国大学生数学建模竞赛" data-en="Higher Education Press Cup National Mathematical Contest in Modeling">高教社杯全国大学生数学建模竞赛</div>
+      <div class="tl-award" data-zh="🥈 广东省二等奖" data-en="🥈 Guangdong Provincial Second Prize">🥈 广东省二等奖</div>
+      <p class="tl-desc" data-zh="国内最具影响力的数学建模竞赛。与华数杯相比，题目更加开放和复杂，需要更强的创新思维。省二的成绩是对我们团队建模能力的认可。" data-en="China's most influential math modeling contest. More open-ended and complex than Huashu Cup, requiring stronger creative thinking. Provincial second prize recognized our team's modeling capability.">国内最具影响力的数学建模竞赛。与华数杯相比，题目更加开放和复杂，需要更强的创新思维。省二的成绩是对我们团队建模能力的认可。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2026.01</div>
+      <div class="tl-title" data-zh="美国大学生数学建模竞赛（MCM/ICM）" data-en="Mathematical Contest in Modeling (MCM/ICM)">美国大学生数学建模竞赛（MCM/ICM）</div>
+      <div class="tl-award" data-zh="🏅 S 奖（Successful Participant）" data-en="🏅 S Award (Successful Participant)">🏅 S 奖（Successful Participant）</div>
+      <p class="tl-desc" data-zh="国际级数学建模竞赛，全程英文论文撰写。题目涉及跨学科问题，需要从全球视角思考解决方案。这次经历极大提升了我的英文学术写作能力和跨文化团队协作能力。" data-en="International math modeling contest with full English paper writing. Problems involved interdisciplinary thinking from a global perspective. Greatly improved my English academic writing and cross-cultural teamwork.">国际级数学建模竞赛，全程英文论文撰写。题目涉及跨学科问题，需要从全球视角思考解决方案。这次经历极大提升了我的英文学术写作能力和跨文化团队协作能力。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2026.04</div>
+      <div class="tl-title" data-zh="蓝桥杯全国软件和信息技术专业人才大赛 · Java 赛道" data-en="Lanqiao Cup · Java Track">蓝桥杯全国软件和信息技术专业人才大赛 · Java 赛道</div>
+      <div class="tl-award" data-zh=" 省级二等奖" data-en="🥈 Provincial Second Prize">🥈 省级二等奖</div>
+      <p class="tl-desc" data-zh="从建模竞赛转向编程竞赛，检验了算法和数据结构的基本功。Java 赛道的题目侧重算法设计与优化，让我重新审视了代码能力对产品经理的重要性。" data-en="Shifted from modeling to programming competition, testing algorithm and data structure fundamentals. Java track focused on algorithm design and optimization, reminding me that coding skills matter for product managers too.">从建模竞赛转向编程竞赛，检验了算法和数据结构的基本功。Java 赛道的题目侧重算法设计与优化，让我重新审视了代码能力对产品经理的重要性。</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2026.05</div>
+      <div class="tl-title" data-zh="中国大学生服务外包创新创业大赛" data-en="China Collegiate Outsourcing Service Innovation Competition">中国大学生服务外包创新创业大赛</div>
+      <div class="tl-award" data-zh="🥉 区域赛区三等奖（D 类）" data-en="🥉 Regional Third Prize (Class D)">🥉 区域赛区三等奖（D 类）</div>
+      <p class="tl-desc" data-zh="以「律智助手」AI 法律咨询平台参赛，这是唯一一个将真实 AI 产品带入比赛的经历。从产品设计、技术实现到商业价值的全链条展示，让我深刻理解了「技术落地」的完整含义。" data-en="Competed with &quot;LvZhi Assistant&quot; AI legal platform — the only entry featuring a real AI product. Demonstrated the full chain from product design, technical implementation to business value. Deepened my understanding of what &quot;technology deployment&quot; truly means.">以「律智助手」AI 法律咨询平台参赛，这是唯一一个将真实 AI 产品带入比赛的经历。从产品设计、技术实现到商业价值的全链条展示，让我深刻理解了「技术落地」的完整含义。</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p data-zh="杨韩冰 · 2026" data-en="杨韩冰 · 2026">杨韩冰 · 2026</p>
+  </footer>
+</main>
+
+<script>
+let currentLang='zh';
+document.querySelectorAll('.lang-btn').forEach(btn=>{btn.addEventListener('click',()=>{currentLang=btn.dataset.lang;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.documentElement.lang=currentLang==='zh'?'zh-CN':'en';document.querySelectorAll('[data-zh][data-en]').forEach(el=>{el.textContent=el.dataset[currentLang]})})});
+const tt=document.getElementById('themeToggle');const sv=localStorage.getItem('theme');if(sv)document.documentElement.setAttribute('data-theme',sv);tt.addEventListener('click',()=>{const c=document.documentElement.getAttribute('data-theme');const n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n)});
+</script>
+</body>
+</html>
