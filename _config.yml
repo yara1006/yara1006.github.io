@@ -6,7 +6,6 @@ baseurl: ""
 
 # 不处理这些文件/目录
 exclude:
-  - admin/
   - README.md
   - .gitignore
   - photo.jpg

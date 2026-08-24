@@ -1,0 +1,22 @@
+---
+layout: default
+title: 比赛记录
+---
+<div class="page-header">
+  <div class="breadcrumb"><a href="{{ '/' | relative_url }}">主页</a> / 比赛记录</div>
+  <h1>比赛记录</h1>
+  <p>从校赛到美赛，每一段经历都在塑造我的数据思维和问题解决能力。</p>
+</div>
+
+<div class="timeline">
+  {% assign sorted = site.competitions | sort: 'date' | reverse %}
+  {% for comp in sorted %}
+  <div class="tl-item">
+    <div class="tl-date">{{ comp.date }}</div>
+    <div class="tl-title">{{ comp.title }}</div>
+    <div class="tl-award">{{ comp.award }}</div>
+    <p class="tl-desc">{{ comp.intro | truncate: 120 }}</p>
+    <a href="{{ comp.url | relative_url }}" class="tl-link">查看详情 →</a>
+  </div>
+  {% endfor %}
+</div>
