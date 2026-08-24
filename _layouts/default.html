@@ -127,12 +127,24 @@ footer{padding:40px 0;border-top:1px solid var(--border);text-align:center;font-
 </nav>
 
 <main>
+  {% if page.layout == 'competition' %}
   <div class="breadcrumb"><a href="{{ '/' | relative_url }}">主页</a> / <a href="{{ '/competitions/' | relative_url }}">比赛记录</a> / {{ page.title }}</div>
+  {% elsif page.layout == 'article' %}
+  <div class="breadcrumb"><a href="{{ '/' | relative_url }}">主页</a> / <a href="{{ '/articles/' | relative_url }}">想法记录</a> / {{ page.title }}</div>
+  {% else %}
+  <div class="breadcrumb"><a href="{{ '/' | relative_url }}">主页</a></div>
+  {% endif %}
 
   {{ content }}
 
   <div class="nav-bottom">
+    {% if page.layout == 'competition' %}
     <a href="{{ '/competitions/' | relative_url }}">← 返回比赛列表</a>
+    {% elsif page.layout == 'article' %}
+    <a href="{{ '/articles/' | relative_url }}">← 返回想法记录</a>
+    {% else %}
+    <a href="{{ '/' | relative_url }}">← 返回主页</a>
+    {% endif %}
   </div>
 
   <footer><p>杨韩冰 · 2026</p></footer>
