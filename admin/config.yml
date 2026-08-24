@@ -2,8 +2,10 @@
 # 文档：https://decapcms.org/docs/configuration-options/
 
 backend:
-  name: git-gateway
+  name: github
+  repo: yara1006/yara1006.github.io
   branch: main
+  client_id: Ov23liuRnAYGlfL1md16
 
 # 媒体文件夹（存放图片等）
 media_folder: "assets"
