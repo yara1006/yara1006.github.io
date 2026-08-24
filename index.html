@@ -3,931 +3,566 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hannah | AI 产品经理</title>
+<title>Hannah | AI Product Manager</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #fafafa;
-  --card: #ffffff;
-  --text: #1a1a2e;
-  --text-secondary: #555770;
-  --text-muted: #8b8fa3;
-  --accent: #2563eb;
-  --accent-light: #dbeafe;
-  --border: #e8e8ee;
-  --radius: 10px;
+  --bg: #ffffff;
+  --bg-soft: #f8f9fc;
+  --bg-soft-2: #eff2f7;
+  --ink: #121317;
+  --ink-soft: #45474d;
+  --ink-faint: #7a7e87;
+  --line: #e6eaf0;
+  --line-soft: #eef1f5;
+  --accent: #0b57d0;
+  --accent-soft: #e8f0fe;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --font: 'Outfit', 'Noto Sans SC', -apple-system, sans-serif;
+  --nav-h: 56px;
 }
 
 [data-theme="dark"] {
-  --bg: #0f0f14;
-  --card: #1a1a24;
-  --text: #e8e8f0;
-  --text-secondary: #a0a0b8;
-  --text-muted: #6b6b80;
-  --accent: #60a5fa;
-  --accent-light: #1e3a5f;
-  --border: #2a2a3a;
+  --bg: #0a0b0d;
+  --bg-soft: #14161a;
+  --bg-soft-2: #1c1f24;
+  --ink: #f0f0f2;
+  --ink-soft: #b8bac0;
+  --ink-faint: #7a7e87;
+  --line: #2a2d33;
+  --line-soft: #1f2227;
+  --accent: #4a9eff;
+  --accent-soft: #1a2d4a;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); overflow-x: clip; }
 
 body {
-  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  font-family: var(--font);
   background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
+  color: var(--ink);
   font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
-/* ===== Nav ===== */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: rgba(250, 250, 250, 0.85);
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+strong { font-weight: 600; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-h);
+  background: rgba(255,255,255,0.85);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 24px;
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
 }
-[data-theme="dark"] nav {
-  background: rgba(15, 15, 20, 0.85);
-}
+[data-theme="dark"] .nav { background: rgba(10,11,13,0.85); }
 .nav-inner {
-  max-width: 800px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 56px;
+  max-width: 1120px; margin: 0 auto; padding: 0 28px;
+  height: var(--nav-h); display: flex; align-items: center; justify-content: space-between;
 }
 .nav-logo {
-  font-family: 'Crimson Pro', 'Noto Serif SC', serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text);
-  text-decoration: none;
+  font-size: 14.5px; font-weight: 500; letter-spacing: -.01em; color: var(--ink);
 }
-.nav-right { display: flex; align-items: center; gap: 20px; }
-.nav-links { display: flex; gap: 20px; list-style: none; }
+.nav-logo:hover { text-decoration: none; opacity: .7; }
+.nav-links { display: flex; gap: 24px; align-items: center; }
 .nav-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
-  transition: 0.15s;
+  font-size: 13px; font-weight: 400; color: var(--ink-soft);
+  letter-spacing: .01em; transition: color .2s;
+  padding: 6px 0; position: relative;
 }
-.nav-links a:hover { color: var(--text); }
+.nav-links a:hover { color: var(--ink); text-decoration: none; }
+.nav-links a::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 2px;
+  height: 1.5px; border-radius: 1px; background: var(--ink);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .25s cubic-bezier(.2,.7,.3,1);
+}
+.nav-links a:hover::after { transform: scaleX(1); }
 
-.nav-toggles { display: flex; align-items: center; gap: 6px; }
+.nav-toggles { display: flex; align-items: center; gap: 8px; }
 .lang-toggle {
-  display: flex;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  overflow: hidden;
+  display: flex; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
 }
 .lang-btn {
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 600;
-  border: none;
-  background: transparent;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: 0.15s;
-  font-family: inherit;
+  padding: 4px 10px; font-size: 12px; font-weight: 600;
+  border: none; background: transparent; color: var(--ink-faint);
+  cursor: pointer; transition: .15s; font-family: inherit;
 }
 .lang-btn.active { background: var(--accent); color: #fff; }
 .theme-btn {
-  width: 32px; height: 32px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 15px;
-  transition: 0.15s;
+  width: 32px; height: 32px; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--bg-soft);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 15px; transition: .15s;
 }
 .theme-btn:hover { border-color: var(--accent); }
 .theme-icon-dark { display: none; }
 [data-theme="dark"] .theme-icon-light { display: none; }
 [data-theme="dark"] .theme-icon-dark { display: inline; }
 
-/* ===== Main ===== */
-main {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-/* ===== Hero ===== */
+/* ===== HERO ===== */
 .hero {
-  padding: 120px 0 80px;
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-}
-.hero-text { flex: 1; }
-.hero-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 14px;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
-  border-radius: 100px;
-  font-size: 12px;
-  color: #065f46;
-  font-weight: 500;
-  margin-bottom: 20px;
-}
-[data-theme="dark"] .hero-status {
-  background: rgba(16, 185, 129, 0.1);
-  border-color: rgba(16, 185, 129, 0.3);
-  color: #34d399;
-}
-.hero-status .dot {
-  width: 7px; height: 7px;
-  background: #10b981;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-.hero h1 {
-  font-family: 'Crimson Pro', 'Noto Serif SC', serif;
-  font-size: 48px;
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-}
-.hero h1 .accent { color: var(--accent); }
-.hero-subtitle {
-  font-size: 18px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 28px;
-  max-width: 520px;
-}
-.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 22px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.15s;
-  cursor: pointer;
-  border: none;
-  font-family: inherit;
-}
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { opacity: 0.9; }
-.btn-ghost {
-  background: transparent;
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
-}
-.btn-ghost:hover { border-color: var(--text-muted); color: var(--text); }
-
-.hero-photo {
-  width: 140px; height: 140px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--border);
-  flex-shrink: 0;
-  margin-top: 8px;
-}
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
-
-/* ===== Section ===== */
-.section {
-  padding: 64px 0;
-  border-top: 1px solid var(--border);
-}
-.section-title {
-  font-family: 'Crimson Pro', 'Noto Serif SC', serif;
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 32px;
-  letter-spacing: -0.01em;
-}
-.section-subtitle {
-  font-size: 14px;
-  color: var(--text-muted);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 20px;
-  margin-top: 40px;
-}
-.section-subtitle:first-of-type { margin-top: 0; }
-
-/* ===== About ===== */
-.about-text {
-  font-size: 16px;
-  color: var(--text-secondary);
-  line-height: 1.8;
-  margin-bottom: 16px;
-}
-.highlight-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
-}
-.highlight-tag {
-  padding: 5px 14px;
-  background: var(--accent-light);
-  color: var(--accent);
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-/* ===== Metrics ===== */
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin: 32px 0;
-}
-.metric {
-  text-align: center;
-  padding: 24px 16px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-}
-.metric-number {
-  font-family: 'Crimson Pro', serif;
-  font-size: 36px;
-  font-weight: 800;
-  color: var(--accent);
-  line-height: 1;
-}
-.metric-label {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 8px;
-}
-
-/* ===== Timeline ===== */
-.timeline {
+  padding: calc(var(--nav-h) + 44px) 0 56px;
   position: relative;
-  padding-left: 24px;
 }
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 6px; bottom: 6px;
-  width: 2px;
-  background: var(--border);
+.hero::before {
+  content: ''; position: absolute; inset: 0 0 auto 0; height: min(70vh, 560px);
+  pointer-events: none; z-index: -1;
+  background:
+    radial-gradient(70% 55% at 12% 0%, rgba(11,87,208,.06), transparent 60%),
+    radial-gradient(50% 45% at 88% 8%, rgba(18,19,23,.035), transparent 55%);
 }
-.tl-item { position: relative; margin-bottom: 28px; }
-.tl-item:last-child { margin-bottom: 0; }
-.tl-item::before {
-  content: '';
-  position: absolute;
-  left: -28px; top: 6px;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--bg);
+[data-theme="dark"] .hero::before {
+  background:
+    radial-gradient(70% 55% at 12% 0%, rgba(74,158,255,.08), transparent 60%),
+    radial-gradient(50% 45% at 88% 8%, rgba(240,240,242,.03), transparent 55%);
 }
-.tl-title {
-  font-family: 'Crimson Pro', 'Noto Serif SC', serif;
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 2px;
-}
-.tl-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
-}
-.tl-company { font-size: 14px; color: var(--accent); font-weight: 600; }
-.tl-date { font-size: 13px; color: var(--text-muted); }
-.tl-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
-
-/* ===== Project Cards ===== */
-.project-group {
-  margin-bottom: 16px;
-}
-.project-group-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 24px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: 0.15s;
-  user-select: none;
-}
-.project-group-header:hover {
-  border-color: var(--accent);
-}
-.project-group-header.active {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-color: var(--accent);
-}
-.project-group-title {
-  font-family: 'Crimson Pro', 'Noto Serif SC', serif;
-  font-size: 17px;
-  font-weight: 700;
-}
-.project-group-count {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-left: 12px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-}
-.project-group-arrow {
-  font-size: 14px;
-  color: var(--text-muted);
-  transition: transform 0.2s;
-}
-.project-group-header.active .project-group-arrow {
-  transform: rotate(180deg);
-}
-.project-group-body {
-  display: none;
-  border: 1px solid var(--accent);
-  border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
-  padding: 0;
-  background: var(--card);
-}
-.project-group-body.open {
-  display: block;
-}
-
-.project-card {
-  padding: 24px;
-  border-bottom: 1px solid var(--border);
-  margin: 0;
-}
-.project-card:last-child {
-  border-bottom: none;
-}
-.project-card:hover {
-  background: var(--bg);
-}
-.project-name {
-  font-family: 'Crimson Pro', 'Noto Serif SC', serif;
-  font-size: 17px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  line-height: 1.3;
-}
-.project-summary {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 10px;
-}
-.project-bullets {
-  margin: 0 0 10px 16px;
-  padding: 0;
-}
-.project-bullets li {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 4px;
-}
-.project-insight {
-  font-size: 13px;
-  color: var(--text-muted);
-  font-style: italic;
-  line-height: 1.6;
-  padding: 8px 12px;
-  background: var(--bg);
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
-.project-result {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--accent);
-  margin-bottom: 12px;
-}
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-}
-.project-tag {
-  padding: 3px 10px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-.project-link {
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  margin-left: auto;
-}
-.project-link:hover { text-decoration: underline; }
-
-/* ===== Skills ===== */
-.skills-grid {
+.hero-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 34%);
+  gap: 28px 32px; align-items: stretch;
 }
-.skill-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
+.hero-copy { display: flex; flex-direction: column; min-width: 0; }
+.hero-eyebrow {
+  font-size: 11.5px; font-weight: 500;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint);
 }
-.skill-card-title {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--text);
+.hero h1 {
+  margin-top: 10px;
+  font-size: clamp(38px, 4.8vw, 56px);
+  font-weight: 400; line-height: 1.05; letter-spacing: -.035em;
 }
-.skill-card-desc {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.7;
+.hero h1 .cn {
+  font-size: .55em; font-weight: 300;
+  letter-spacing: .02em; color: var(--ink-faint);
+}
+.hero-roles {
+  margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px 0;
+  font-size: 14.5px; line-height: 1.45; color: var(--ink);
+}
+.hero-roles .sep { margin: 0 10px; color: var(--line); }
+.hero-lead {
+  margin-top: 14px; font-size: 16px; line-height: 1.5;
+  color: var(--ink); letter-spacing: -.015em;
+}
+.hero-bio {
+  margin-top: 10px; font-size: 14px; line-height: 1.65;
+  color: var(--ink-soft);
+}
+.hero-bio strong { color: var(--ink); font-weight: 600; }
+
+.hero-metrics {
+  margin-top: auto; padding-top: 22px;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px 20px; border-top: 1px solid var(--line);
+}
+.hero-metrics span {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);
+}
+.hero-metrics strong {
+  font-size: 20px; font-weight: 500;
+  letter-spacing: -.02em; color: var(--ink); line-height: 1.1;
 }
 
-/* ===== Insights ===== */
+.hero-side { display: flex; flex-direction: column; align-self: stretch; }
+.hero-portrait {
+  width: 100%; aspect-ratio: 4/5;
+  border-radius: 22px; overflow: hidden;
+  background: var(--bg-soft);
+  box-shadow: 0 0 0 1px var(--line);
+}
+.hero-portrait img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .7s cubic-bezier(.2,.7,.3,1);
+}
+.hero-portrait:hover img { transform: scale(1.03); }
+
+.hero-actions {
+  margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+}
+.hero-actions a {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500; color: var(--ink-soft);
+  transition: color .2s;
+}
+.hero-actions a:hover { color: var(--ink); text-decoration: none; }
+
+/* ===== SECTIONS ===== */
+section.block { padding: 48px 0; }
+section.block.soft { background: var(--bg-soft); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+.sec-head { margin-bottom: 20px; }
+.sec-title {
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 400; letter-spacing: -.035em; line-height: 1.08;
+}
+
+/* ===== ABOUT ===== */
+.about-content { font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+.about-content p { margin-bottom: 16px; }
+.about-content strong { color: var(--ink); }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.skill-tag {
+  padding: 5px 14px; background: var(--accent-soft); color: var(--accent);
+  border-radius: 100px; font-size: 13px; font-weight: 500;
+}
+
+/* ===== TIMELINE (Experience) ===== */
+.exp-list { list-style: none; border-top: 1px solid var(--line); }
+.exp-item {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 28px; padding: 16px 0; border-bottom: 1px solid var(--line-soft);
+  align-items: baseline;
+}
+.exp-item:last-child { border-bottom: none; }
+.exp-period {
+  font-size: 12.5px; font-weight: 500;
+  letter-spacing: .04em; color: var(--ink-faint); white-space: nowrap;
+}
+.exp-main { display: flex; flex-direction: column; gap: 3px; }
+.exp-org { font-size: 17px; font-weight: 500; letter-spacing: -.015em; }
+.exp-org a { color: var(--ink); }
+.exp-org a:hover { color: var(--accent); text-decoration: none; }
+.exp-role { font-size: 13.5px; color: var(--ink-soft); margin-top: 3px; }
+.exp-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.65; margin-top: 8px; }
+
+/* ===== PROJECT CARDS ===== */
+.proj-list { display: flex; flex-direction: column; gap: 16px; }
+.proj-card {
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: var(--radius-md); padding: 28px;
+  transition: .15s;
+}
+.proj-card:hover { border-color: var(--accent); }
+.proj-title {
+  font-size: 17px; font-weight: 500; letter-spacing: -.015em;
+  margin-bottom: 10px; color: var(--ink);
+}
+.proj-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 12px; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.proj-tag {
+  padding: 3px 10px; background: var(--bg); border: 1px solid var(--line);
+  border-radius: 4px; font-size: 12px; color: var(--ink-faint);
+}
+.proj-link {
+  margin-left: auto; font-size: 13px; font-weight: 500; color: var(--accent);
+}
+.proj-link:hover { text-decoration: underline; }
+
+/* ===== INSIGHTS ===== */
 .insight-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px;
-  margin-bottom: 16px;
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: var(--radius-md); padding: 28px; margin-bottom: 16px;
 }
 .insight-num {
-  font-family: 'Crimson Pro', serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 8px;
+  font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 8px;
 }
 .insight-title {
-  font-family: 'Crimson Pro', 'Noto Serif SC', serif;
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-size: 17px; font-weight: 500; letter-spacing: -.015em; margin-bottom: 10px;
 }
-.insight-text {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
+.insight-text { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
 
-/* ===== Resume CTA ===== */
+/* ===== SKILLS ===== */
+.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.skill-card {
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: var(--radius-md); padding: 24px;
+}
+.skill-card-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.skill-card-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+
+/* ===== RESUME CTA ===== */
 .resume-cta {
-  text-align: center;
-  padding: 48px 32px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  text-align: center; padding: 48px 32px;
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: var(--radius-md);
 }
-.resume-cta h3 {
-  font-family: 'Crimson Pro', 'Noto Serif SC', serif;
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 8px;
+.resume-cta h3 { font-size: 24px; font-weight: 400; letter-spacing: -.035em; margin-bottom: 8px; }
+.resume-cta p { font-size: 14px; color: var(--ink-soft); margin-bottom: 24px; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 24px; background: var(--accent); color: #fff;
+  border-radius: 999px; font-size: 14px; font-weight: 500;
+  text-decoration: none; transition: .15s;
 }
-.resume-cta p {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin-bottom: 24px;
-}
+.btn-primary:hover { opacity: .9; text-decoration: none; }
 
-/* ===== Footer ===== */
+/* ===== FOOTER ===== */
 footer {
-  padding: 40px 0;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  font-size: 13px;
-  color: var(--text-muted);
+  padding: 40px 0; border-top: 1px solid var(--line);
+  text-align: center; font-size: 13px; color: var(--ink-faint);
 }
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 12px;
-}
-.footer-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 13px;
-  transition: 0.15s;
-}
+.footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 12px; }
+.footer-links a { color: var(--ink-soft); font-size: 13px; }
 .footer-links a:hover { color: var(--accent); }
 
-/* ===== Responsive ===== */
-@media (max-width: 640px) {
-  .hero { flex-direction: column-reverse; gap: 24px; padding: 100px 0 60px; }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-portrait { max-width: 200px; margin: 0 auto; }
   .hero h1 { font-size: 36px; }
-  .hero-photo { width: 100px; height: 100px; }
-  .metrics { grid-template-columns: repeat(2, 1fr); }
+  .hero-metrics { grid-template-columns: repeat(3, 1fr); }
+  .exp-item { grid-template-columns: 1fr; gap: 8px; }
   .skills-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
-  .section-title { font-size: 26px; }
-  .project-card { padding: 24px; }
-  .project-name { font-size: 18px; }
 }
 </style>
 </head>
 <body>
 
-<!-- Nav -->
-<nav>
+<nav class="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">Hannah</a>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="#about">关于</a></li>
-        <li><a href="#experience">经历</a></li>
-        <li><a href="#projects">项目</a></li>
-        <li><a href="#skills">技能</a></li>
-        <li><a href="#insights">观点</a></li>
-        <li><a href="/competitions/">比赛</a></li>
-        <li><a href="/articles/">想法</a></li>
-      </ul>
-      <div class="nav-toggles">
-        <div class="lang-toggle">
-          <button class="lang-btn active" data-lang="zh">中</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
-        <button class="theme-btn" id="themeToggle">
-          <span class="theme-icon-light">🌙</span>
-          <span class="theme-icon-dark">☀️</span>
-        </button>
+    <div class="nav-links">
+      <a href="#about" data-zh="关于" data-en="About">关于</a>
+      <a href="#experience" data-zh="经历" data-en="Experience">经历</a>
+      <a href="#projects" data-zh="项目" data-en="Projects">项目</a>
+      <a href="#skills" data-zh="技能" data-en="Skills">技能</a>
+      <a href="#insights" data-zh="观点" data-en="Insights">观点</a>
+      <a href="/competitions/" data-zh="比赛" data-en="Competitions">比赛</a>
+      <a href="/articles/" data-zh="想法" data-en="Writing">想法</a>
+    </div>
+    <div class="nav-toggles">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="zh">中</button>
+        <button class="lang-btn" data-lang="en">EN</button>
       </div>
+      <button class="theme-btn" id="themeToggle">
+        <span class="theme-icon-light"></span>
+        <span class="theme-icon-dark">☀️</span>
+      </button>
     </div>
   </div>
 </nav>
 
-<main>
+<main class="wrap">
 
-  <!-- Hero -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-text">
-      <div class="hero-status">
-        <span class="dot"></span>
-        <span data-zh="正在寻找 AI 产品经理机会" data-en="Open to AI PM opportunities">正在寻找 AI 产品经理机会</span>
-      </div>
-      <h1>
-        <span data-zh="你好，我是" data-en="Hi, I'm">你好，我是</span> <span class="accent" data-zh="Hannah" data-en="Hannah">Hannah</span>
-      </h1>
-      <p class="hero-subtitle" data-zh="计算机本科在读，两段企业级 AI 产品实习经验。在顺丰从 0 到 1 设计物流智能体（F1 88%），在东亚银行主导多模态 RAG 知识库上线（准确率 +12.4%）。" data-en="CS undergrad with two enterprise AI product internships. Designed logistics AI agents at SF Express (F1 88%), led multimodal RAG knowledge base at Bank of East Asia (accuracy +12.4%).">计算机本科在读，两段企业级 AI 产品实习经验。在顺丰从 0 到 1 设计物流智能体（F1 88%），在东亚银行主导多模态 RAG 知识库上线（准确率 +12.4%）。</p>
-      <div class="hero-actions">
-        <a href="#resume" class="btn btn-primary" data-zh="下载简历" data-en="Download Resume">下载简历</a>
-        <a href="mailto:hanbingyang2004@qq.com" class="btn btn-ghost" data-zh="联系我" data-en="Contact">联系我</a>
-        <a href="https://github.com/yara1006" target="_blank" class="btn btn-ghost">GitHub</a>
-      </div>
-    </div>
-    <div class="hero-photo">
-      <img src="photo.jpg" alt="Hannah">
-    </div>
-  </section>
-
-  <!-- Metrics -->
-  <div class="metrics">
-    <div class="metric">
-      <div class="metric-number">92.5<span style="font-size:20px">%</span></div>
-      <div class="metric-label" data-zh="RAG 知识库准确率" data-en="RAG Accuracy">RAG 知识库准确率</div>
-    </div>
-    <div class="metric">
-      <div class="metric-number">88<span style="font-size:20px">%</span></div>
-      <div class="metric-label" data-zh="电报智能体 F1" data-en="Telegram Agent F1">电报智能体 F1</div>
-    </div>
-    <div class="metric">
-      <div class="metric-number">3.87</div>
-      <div class="metric-label" data-zh="GPA / 4.50" data-en="GPA / 4.50">GPA / 4.50</div>
-    </div>
-    <div class="metric">
-      <div class="metric-number">2</div>
-      <div class="metric-label" data-zh="段企业实习" data-en="Enterprise Internships">段企业实习</div>
-    </div>
-  </div>
-
-  <!-- About -->
-  <section class="section" id="about">
-    <h2 class="section-title" data-zh="关于我" data-en="About">关于我</h2>
-    <p class="about-text" data-zh="计算机本科在读，两段企业级 AI 产品实习经验。在顺丰从 0 到 1 设计物流智能体（F1 88%），在东亚银行主导多模态 RAG 知识库上线（准确率 +12.4%）。熟悉 AI Agent、RAG、多模态 AI、MCP 协议与 Prompt Engineering，有法律 AI 和对抗攻防项目经验，多个项目已开源。" data-en="CS undergrad with two enterprise AI product internships. Designed logistics AI agents at SF Express (F1 88%), led multimodal RAG knowledge base at Bank of East Asia (accuracy +12.4%). Proficient in AI Agent, RAG, Multimodal AI, MCP Protocol, and Prompt Engineering.">计算机本科在读，两段企业级 AI 产品实习经验。在顺丰从 0 到 1 设计物流智能体（F1 88%），在东亚银行主导多模态 RAG 知识库上线（准确率 +12.4%）。熟悉 AI Agent、RAG、多模态 AI、MCP 协议与 Prompt Engineering，有法律 AI 和对抗攻防项目经验，多个项目已开源。</p>
-    <p class="about-text" data-zh="我善于理解大模型的能力边界，能够在技术可行性与商业价值之间找到平衡。我相信好的 AI 产品不是堆砌技术，而是真正解决用户的问题。" data-en="I excel at understanding LLM capability boundaries and balancing technical feasibility with business value. Great AI products solve real problems, not stack technologies.">我善于理解大模型的能力边界，能够在技术可行性与商业价值之间找到平衡。我相信好的 AI 产品不是堆砌技术，而是真正解决用户的问题。</p>
-    <div class="highlight-tags">
-      <span class="highlight-tag">AI Agent</span>
-      <span class="highlight-tag">RAG</span>
-      <span class="highlight-tag" data-zh="多模态 AI" data-en="Multimodal AI">多模态 AI</span>
-      <span class="highlight-tag">MCP</span>
-      <span class="highlight-tag" data-zh="提示工程" data-en="Prompt Engineering">提示工程</span>
-      <span class="highlight-tag" data-zh="产品设计" data-en="Product Design">产品设计</span>
-    </div>
-  </section>
-
-  <!-- Education -->
-  <section class="section" id="education">
-    <h2 class="section-title" data-zh="教育背景" data-en="Education">教育背景</h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-title" data-zh="计算机科学与技术 · 本科" data-en="Computer Science · Bachelor">计算机科学与技术 · 本科</div>
-        <div class="tl-meta">
-          <span class="tl-company" data-zh="深圳大学" data-en="Shenzhen University">深圳大学</span>
-          <span class="tl-date">2023.09 — <span data-zh="至今" data-en="Present">至今</span></span>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-eyebrow" data-zh="正在寻找 AI 产品经理机会" data-en="Open to AI PM opportunities">正在寻找 AI 产品经理机会</div>
+        <h1>
+          <span data-zh="你好，我是" data-en="Hi, I'm">你好，我是</span> <span class="accent">Hannah</span><br>
+          <span class="cn" data-zh="杨韩冰" data-en="Yang Hanbing">杨韩冰</span>
+        </h1>
+        <div class="hero-roles">
+          <span class="role" data-zh="AI 产品经理" data-en="AI Product Manager">AI 产品经理</span>
+          <span class="sep">·</span>
+          <span class="role" data-zh="深圳大学 2027 届" data-en="SZU Class of 2027">深圳大学 2027 届</span>
         </div>
-        <p class="tl-desc"><strong>GPA：</strong>3.87 / 4.50</p>
-        <p class="tl-desc" data-zh="<strong>奖项：</strong>国家励志奖学金 · 数模国赛广东省二等奖 · 美赛 S 奖 · 华数杯全国三等奖 · 蓝桥杯 Java 省二 · 中国大学生外包大赛 D 类三等奖" data-en="<strong>Awards:</strong> National Encouragement Scholarship · CUMCM Guangdong 2nd Prize · MCM S Award · Blue Bridge Cup Java Provincial 2nd · China Collegiate Outsourcing Competition Class D 3rd Prize"><strong>奖项：</strong>国家励志奖学金 · 数模国赛广东省二等奖 · 美赛 S 奖 · 华数杯全国三等奖 · 蓝桥杯 Java 省二 · 中国大学生外包大赛 D 类三等奖</p>
-        <p class="tl-desc" data-zh="<strong>论文：</strong>第三作者《AKBI: 针对预训练模型的中文文本后门攻击方法》（计算机科学学报录用）——负责后门攻击实验设计、中文语料构建与评测指标对比" data-en="<strong>Publication:</strong> 3rd author &quot;AKBI: Chinese Text Backdoor Attack Against Pre-trained Models&quot; (Journal of Computer Science, accepted)"><strong>论文：</strong>第三作者《AKBI: 针对预训练模型的中文文本后门攻击方法》（计算机科学学报录用）——负责后门攻击实验设计、中文语料构建与评测指标对比</p>
-        <p class="tl-desc" data-zh="<strong>语言：</strong>CET-4 · CET-6，可流畅阅读英文技术文档与论文" data-en="<strong>Languages:</strong> CET-4 · CET-6, fluent in reading English technical documents and papers"><strong>语言：</strong>CET-4 · CET-6，可流畅阅读英文技术文档与论文</p>
+        <p class="hero-lead" data-zh="计算机本科在读，两段企业级 AI 产品实习经验。在顺丰从 0 到 1 设计物流智能体（F1 88%），在东亚银行主导多模态 RAG 知识库上线（准确率 +12.4%）。" data-en="CS undergrad with two enterprise AI product internships. Designed logistics AI agents at SF Express (F1 88%), led multimodal RAG knowledge base at Bank of East Asia (accuracy +12.4%).">计算机本科在读，两段企业级 AI 产品实习经验。在顺丰从 0 到 1 设计物流智能体（F1 88%），在东亚银行主导多模态 RAG 知识库上线（准确率 +12.4%）。</p>
+        <p class="hero-bio" data-zh="熟悉 AI Agent、RAG、多模态 AI、MCP 协议与 Prompt Engineering，有法律 AI 和对抗攻防项目经验，多个项目已开源。" data-en="Proficient in AI Agent, RAG, Multimodal AI, MCP Protocol, and Prompt Engineering. Multiple open-source projects.">熟悉 AI Agent、RAG、多模态 AI、MCP 协议与 Prompt Engineering，有法律 AI 和对抗攻防项目经验，多个项目已开源。</p>
+
+        <div class="hero-metrics">
+          <div>
+            <strong>92.5%</strong>
+            <span data-zh="RAG 准确率" data-en="RAG Accuracy">RAG 准确率</span>
+          </div>
+          <div>
+            <strong>88%</strong>
+            <span data-zh="智能体 F1" data-en="Agent F1 Score">智能体 F1</span>
+          </div>
+          <div>
+            <strong>3.87</strong>
+            <span>GPA / 4.50</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#resume" class="btn-primary" data-zh="下载简历" data-en="Download Resume">下载简历</a>
+          <a href="mailto:hanbingyang2004@qq.com" data-zh="联系我" data-en="Contact">联系我</a>
+          <a href="https://github.com/yara1006" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="hero-portrait">
+          <img src="photo.jpg" alt="Hannah">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Experience -->
-  <section class="section" id="experience">
-    <h2 class="section-title" data-zh="工作经历" data-en="Work Experience">工作经历</h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-title" data-zh="助理 IT 产品经理实习生" data-en="Assistant IT Product Manager Intern">助理 IT 产品经理实习生</div>
-        <div class="tl-meta">
-          <span class="tl-company" data-zh="顺丰速运" data-en="SF Express">顺丰速运</span>
-          <span class="tl-date">2026.06 — <span data-zh="至今" data-en="Present">至今</span></span>
-        </div>
-        <p class="tl-desc" data-zh="负责物流智能体产品从 0 到 1 设计，覆盖电报异常识别、单证一致性校核、货物合规检查三大场景。" data-en="Leading 0→1 design of logistics AI agent products across telegram anomaly detection, document verification, and cargo compliance checking.">负责物流智能体产品从 0 到 1 设计，覆盖电报异常识别、单证一致性校核、货物合规检查三大场景。</p>
+  <!-- ABOUT -->
+  <section class="block" id="about">
+    <div class="sec-head">
+      <h2 class="sec-title" data-zh="关于我" data-en="About">关于我</h2>
+    </div>
+    <div class="about-content">
+      <p data-zh="我是一名具有技术背景的 AI 产品经理，专注于在金融与技术的交汇处构建 AI 原生产品。目前在东亚银行实习期间，主导了多模态 RAG 知识库从 0 到 1 的产品设计与落地，将准确率从 80.1% 提升至 92.5%。" data-en="A technically-grounded AI Product Manager focused on building AI-native products at the intersection of finance and technology. Led the 0→1 design and launch of a multimodal RAG knowledge base at Bank of East Asia, improving accuracy from 80.1% to 92.5%.">我是一名具有技术背景的 AI 产品经理，专注于在金融与技术的交汇处构建 AI 原生产品。目前在东亚银行实习期间，主导了多模态 RAG 知识库从 0 到 1 的产品设计与落地，将准确率从 80.1% 提升至 92.5%。</p>
+      <p data-zh="我善于理解大模型的能力边界，能够在技术可行性与商业价值之间找到平衡。我相信好的 AI 产品不是堆砌技术，而是真正解决用户的问题。" data-en="I excel at understanding LLM capability boundaries and balancing technical feasibility with business value. Great AI products solve real problems, not stack technologies.">我善于理解大模型的能力边界，能够在技术可行性与商业价值之间找到平衡。我相信好的 AI 产品不是堆砌技术，而是真正解决用户的问题。</p>
+    </div>
+    <div class="skill-tags">
+      <span class="skill-tag">AI Agent</span>
+      <span class="skill-tag">RAG</span>
+      <span class="skill-tag" data-zh="多模态 AI" data-en="Multimodal AI">多模态 AI</span>
+      <span class="skill-tag">MCP</span>
+      <span class="skill-tag" data-zh="提示工程" data-en="Prompt Engineering">提示工程</span>
+      <span class="skill-tag" data-zh="产品设计" data-en="Product Design">产品设计</span>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="block soft" id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec-title" data-zh="工作经历" data-en="Work Experience">工作经历</h2>
       </div>
-      <div class="tl-item">
-        <div class="tl-title" data-zh="AI 产品经理 & Agent 开发工程师实习生" data-en="AI Product Manager & Agent Developer Intern">AI 产品经理 & Agent 开发工程师实习生</div>
-        <div class="tl-meta">
-          <span class="tl-company" data-zh="东亚银行" data-en="Bank of East Asia">东亚银行</span>
-          <span class="tl-date">2026.03 — 2026.06</span>
+      <ul class="exp-list">
+        <li class="exp-item">
+          <div class="exp-period">2026.06 — <span data-zh="至今" data-en="Present">至今</span></div>
+          <div class="exp-main">
+            <div class="exp-org" data-zh="顺丰速运" data-en="SF Express">顺丰速运</div>
+            <div class="exp-role" data-zh="助理 IT 产品经理实习生" data-en="Assistant IT Product Manager Intern">助理 IT 产品经理实习生</div>
+            <div class="exp-desc" data-zh="负责物流智能体产品从 0 到 1 设计，覆盖电报异常识别、单证一致性校核、货物合规检查三大场景。" data-en="Leading 0→1 design of logistics AI agent products across telegram anomaly detection, document verification, and cargo compliance checking.">负责物流智能体产品从 0 到 1 设计，覆盖电报异常识别、单证一致性校核、货物合规检查三大场景。</div>
+          </div>
+        </li>
+        <li class="exp-item">
+          <div class="exp-period">2026.03 — 2026.06</div>
+          <div class="exp-main">
+            <div class="exp-org" data-zh="东亚银行" data-en="Bank of East Asia">东亚银行</div>
+            <div class="exp-role" data-zh="AI 产品经理 & Agent 开发工程师实习生" data-en="AI Product Manager & Agent Developer Intern">AI 产品经理 & Agent 开发工程师实习生</div>
+            <div class="exp-desc" data-zh="主导多模态 RAG 知识库、MCP 联网检索服务、AI 员工平台三大产品的设计与落地。" data-en="Led design and delivery of three products: multimodal RAG knowledge base, MCP web search service, and AI employee platform.">主导多模态 RAG 知识库、MCP 联网检索服务、AI 员工平台三大产品的设计与落地。</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="block" id="projects">
+    <div class="sec-head">
+      <h2 class="sec-title" data-zh="项目经历" data-en="Projects">项目经历</h2>
+    </div>
+    <div class="proj-list">
+      <!-- SF Express Projects -->
+      <div class="proj-card">
+        <h3 class="proj-title" data-zh="电报智能体 | 物流电报异常识别与自动校验" data-en="Telegram Agent | Anomaly Detection & Auto-Validation">电报智能体 | 物流电报异常识别与自动校验</h3>
+        <p class="proj-desc" data-zh="解决物流电报因非标格式导致 300+ 份解析失败的事故，从 0 到 1 设计异常检测智能体。MVP F1 Score 88%。" data-en="Solved a 300+ telegram parsing failure incident. Designed anomaly detection agent from 0→1. MVP F1 Score 88%.">解决物流电报因非标格式导致 300+ 份解析失败的事故，从 0 到 1 设计异常检测智能体。MVP F1 Score 88%。</p>
+        <div class="proj-tags">
+          <span class="proj-tag">AI Agent</span>
+          <span class="proj-tag" data-zh="异常检测" data-en="Anomaly Detection">异常检测</span>
+          <span class="proj-tag">IATA FWB16</span>
+          <span class="proj-tag">MVP</span>
         </div>
-        <p class="tl-desc" data-zh="主导多模态 RAG 知识库、MCP 联网检索服务、AI 员工平台三大产品的设计与落地。" data-en="Led design and delivery of three products: multimodal RAG knowledge base, MCP web search service, and AI employee platform.">主导多模态 RAG 知识库、MCP 联网检索服务、AI 员工平台三大产品的设计与落地。</p>
+      </div>
+
+      <div class="proj-card">
+        <h3 class="proj-title" data-zh="校核智能体 | 单证一致性自动核对" data-en="Verification Agent | Document Consistency Auto-Check">校核智能体 | 单证一致性自动核对</h3>
+        <p class="proj-desc" data-zh="货站每月 2-3 万张运单，目标将人力从 20+ 缩减至 10 人。MVP 准确率 92%，单均审单时间从 2-3 分钟缩短至 30 秒。" data-en="Cargo station processes 20-30K waybills monthly. Goal: reduce workforce from 20+ to 10. MVP 92% accuracy, per-bill time reduced to 30 sec.">货站每月 2-3 万张运单，目标将人力从 20+ 缩减至 10 人。MVP 准确率 92%，单均审单时间从 2-3 分钟缩短至 30 秒。</p>
+        <div class="proj-tags">
+          <span class="proj-tag">OCR</span>
+          <span class="proj-tag">AI Agent</span>
+          <span class="proj-tag" data-zh="相似度比对" data-en="Similarity Matching">相似度比对</span>
+          <span class="proj-tag">MVP</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <h3 class="proj-title" data-zh="营运智能机器人知识库 | RAG 链路设计与多模态调优" data-en="Operations Robot Knowledge Base | RAG Pipeline & Multimodal Tuning">营运智能机器人知识库 | RAG 链路设计与多模态调优</h3>
+        <p class="proj-desc" data-zh="银行营运人员频繁查询规程文档，现有问答系统准确率仅 80.1%。引入多模态大模型解决表格与流程图理解不足，POC 准确率提升至 92.5%。" data-en="Bank operations staff frequently query procedure documents. Existing system at 80.1% accuracy. Introduced multimodal LLM, POC improved to 92.5%.">银行营运人员频繁查询规程文档，现有问答系统准确率仅 80.1%。引入多模态大模型解决表格与流程图理解不足，POC 准确率提升至 92.5%。</p>
+        <div class="proj-tags">
+          <span class="proj-tag">RAG</span>
+          <span class="proj-tag" data-zh="多模态 AI" data-en="Multimodal AI">多模态 AI</span>
+          <span class="proj-tag">OCR</span>
+          <span class="proj-tag" data-zh="已上线" data-en="Launched">已上线</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <h3 class="proj-title" data-zh="联网检索 MCP | 银行内网实时外部信息获取服务" data-en="Web Search MCP | Real-time External Info for Bank Intranet">联网检索 MCP | 银行内网实时外部信息获取服务</h3>
+        <p class="proj-desc" data-zh="银行内网物理隔离导致员工无法获取实时外部信息。基于 MCP 协议落地合规联网检索服务，支持 ≥500 QPS 并发。" data-en="Bank intranet's physical isolation prevents real-time external info access. MCP-based compliant web search service, ≥500 QPS.">银行内网物理隔离导致员工无法获取实时外部信息。基于 MCP 协议落地合规联网检索服务，支持 ≥500 QPS 并发。</p>
+        <div class="proj-tags">
+          <span class="proj-tag">MCP Protocol</span>
+          <span class="proj-tag" data-zh="金融合规" data-en="Compliance">金融合规</span>
+          <span class="proj-tag">500+ QPS</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section class="section" id="projects">
-    <h2 class="section-title" data-zh="项目经历" data-en="Projects">项目经历</h2>
-
-    <!-- Group: 顺丰 -->
-    <div class="project-group">
-      <div class="project-group-header" onclick="toggleGroup(this)">
-        <div>
-          <span class="project-group-title" data-zh="顺丰速运 · 物流智能体" data-en="SF Express · Logistics AI Agents">顺丰速运 · 物流智能体</span>
-          <span class="project-group-count">3 <span data-zh="个项目" data-en="projects">个项目</span></span>
-        </div>
-        <span class="project-group-arrow">▼</span>
+  <!-- SKILLS -->
+  <section class="block soft" id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec-title" data-zh="技能与其他" data-en="Skills & Others">技能与其他</h2>
       </div>
-      <div class="project-group-body">
-
-        <div class="project-card">
-          <h3 class="project-name" data-zh="电报智能体 | 异常识别与自动校验" data-en="Telegram Agent | Anomaly Detection & Auto-Validation">电报智能体 | 异常识别与自动校验</h3>
-          <p class="project-summary" data-zh="解决物流电报因非标格式导致 300+ 份解析失败的事故，从 0 到 1 设计异常检测智能体。" data-en="Solved a 300+ telegram parsing failure incident caused by non-standard formats. Designed anomaly detection agent from 0→1.">解决物流电报因非标格式导致 300+ 份解析失败的事故，从 0 到 1 设计异常检测智能体。</p>
-          <ul class="project-bullets">
-            <li data-zh="梳理 IATA FWB16 标准，定义格式错误（字段长度、分隔符、航段序列）与业务逻辑错误（重量/体积/目的地不匹配）的检测规则" data-en="Mapped IATA FWB16 standards; defined detection rules for format errors (field length, delimiters, flight segments) and business logic errors (weight/volume/destination mismatches)">梳理 IATA FWB16 标准，定义格式错误（字段长度、分隔符、航段序列）与业务逻辑错误（重量/体积/目的地不匹配）的检测规则</li>
-            <li data-zh="基于历史电报构建异常样本库，训练 AI 检测偏离常态的异常报文，替代传统规则引擎" data-en="Built anomaly sample library from historical telegrams to train AI detection, replacing traditional rule engine">基于历史电报构建异常样本库，训练 AI 检测偏离常态的异常报文，替代传统规则引擎</li>
-          </ul>
-          <p class="project-insight" data-zh="💡 选择 AI 方案而非规则引擎：电报格式多样，规则难以覆盖所有非标情况" data-en="💡 Chose AI over rule engine: telegram formats are too diverse for rules to cover all cases">💡 选择 AI 方案而非规则引擎：电报格式多样，规则难以覆盖所有非标情况</p>
-          <div class="project-result" data-zh="📊 MVP F1 Score 88%（召回率 92%，精确率 85%）" data-en="📊 MVP F1 Score 88% (Recall 92%, Precision 85%)">📊 MVP F1 Score 88%（召回率 92%，精确率 85%）</div>
-          <div class="project-tags">
-            <span class="project-tag">AI Agent</span>
-            <span class="project-tag" data-zh="异常检测" data-en="Anomaly Detection">异常检测</span>
-            <span class="project-tag">IATA FWB16</span>
-            <span class="project-tag">MVP</span>
-          </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-title" data-zh="大模型技术" data-en="LLM & AI Technology">大模型技术</div>
+          <div class="skill-card-desc" data-zh="熟悉 AI Agent 设计、RAG 链路搭建、Prompt Engineering、MCP 协议；有 DeepSeek / Qwen / Claude 等主流 LLM 的 API 集成与评测经验" data-en="Proficient in AI Agent design, RAG pipeline, Prompt Engineering, MCP Protocol; experienced with DeepSeek / Qwen / Claude API integration">熟悉 AI Agent 设计、RAG 链路搭建、Prompt Engineering、MCP 协议；有 DeepSeek / Qwen / Claude 等主流 LLM 的 API 集成与评测经验</div>
         </div>
-
-        <div class="project-card">
-          <h3 class="project-name" data-zh="校核智能体 | 单证一致性自动核对" data-en="Verification Agent | Document Consistency Auto-Check">校核智能体 | 单证一致性自动核对</h3>
-          <p class="project-summary" data-zh="货站每月 2-3 万张运单人工审单耗时 2-3 分钟/单，目标将人力从 20+ 缩减至 10 人。" data-en="Cargo station processes 20-30K waybills monthly, 2-3 min/bill manually. Goal: reduce workforce from 20+ to 10.">货站每月 2-3 万张运单人工审单耗时 2-3 分钟/单，目标将人力从 20+ 缩减至 10 人。</p>
-          <ul class="project-bullets">
-            <li data-zh="定义核心校验字段（收发货人、品名、件数/重量/体积、特货代码），设计「相似度」判断机制，90% 阈值以下自动进入人工复核" data-en="Defined core validation fields (shipper/consignee, commodity, pieces/weight/volume, special cargo codes). Designed similarity judgment with 90% threshold — below triggers manual review">定义核心校验字段（收发货人、品名、件数/重量/体积、特货代码），设计「相似度」判断机制，90% 阈值以下自动进入人工复核</li>
-            <li data-zh="选择相似度方案而非逐字比对，因为纸质单据存在手写、扫描质量差异，逐字比对会产生大量误报" data-en="Chose similarity over character-by-character comparison — paper documents have handwriting and scan variations; character matching generates too many false positives">选择相似度方案而非逐字比对，因为纸质单据存在手写、扫描质量差异，逐字比对会产生大量误报</li>
-          </ul>
-          <div class="project-result" data-zh="📊 MVP 准确率 92%，单均审单时间从 2-3 分钟缩短至 30 秒" data-en="📊 MVP 92% accuracy, per-bill time reduced from 2-3 min to 30 sec">📊 MVP 准确率 92%，单均审单时间从 2-3 分钟缩短至 30 秒</div>
-          <div class="project-tags">
-            <span class="project-tag">OCR</span>
-            <span class="project-tag">AI Agent</span>
-            <span class="project-tag" data-zh="相似度比对" data-en="Similarity Matching">相似度比对</span>
-            <span class="project-tag">MVP</span>
-          </div>
+        <div class="skill-card">
+          <div class="skill-card-title" data-zh="产品能力" data-en="Product Skills">产品能力</div>
+          <div class="skill-card-desc" data-zh="具备 AI 智能体从 0 到 1 产品设计经验，熟练使用 Axure / Figma 等原型工具，有需求分析、竞品调研与 PRD 撰写经验" data-en="Experience in end-to-end AI agent product design; proficient with Axure / Figma; skilled in requirements analysis and PRD writing">具备 AI 智能体从 0 到 1 产品设计经验，熟练使用 Axure / Figma 等原型工具，有需求分析、竞品调研与 PRD 撰写经验</div>
         </div>
-
-        <div class="project-card">
-          <h3 class="project-name" data-zh="货物合规智能体 | 运输合规自动检查" data-en="Cargo Compliance Agent | Automated Compliance Check">货物合规智能体 | 运输合规自动检查</h3>
-          <p class="project-summary" data-zh="货物运输需符合 HSCODE、海关规定、特货规则等，合规检查复杂且依赖人工经验。" data-en="Cargo transport must comply with HSCODE, customs regulations, and special cargo rules. Compliance checking is complex and relies on manual expertise.">货物运输需符合 HSCODE、海关规定、特货规则等，合规检查复杂且依赖人工经验。</p>
-          <ul class="project-bullets">
-            <li data-zh="梳理 HSCODE 编码规则、海关规定、特货规则等业务知识，设计智能体自动检查合规性并标记违规项" data-en="Mapped HSCODE rules, customs regulations, and special cargo rules. Designed agent to auto-check compliance and flag violations">梳理 HSCODE 编码规则、海关规定、特货规则等业务知识，设计智能体自动检查合规性并标记违规项</li>
-          </ul>
-          <div class="project-tags">
-            <span class="project-tag">AI Agent</span>
-            <span class="project-tag">HSCODE</span>
-            <span class="project-tag" data-zh="合规检查" data-en="Compliance">合规检查</span>
-            <span class="project-tag" data-zh="进行中" data-en="In Progress">进行中</span>
-          </div>
+        <div class="skill-card">
+          <div class="skill-card-title" data-zh="工程基础" data-en="Engineering">工程基础</div>
+          <div class="skill-card-desc" data-zh="熟悉 Python / Java / SQL，了解 FastAPI / Vue；熟练使用 Claude Code / Cursor 等 AI 编程工具提升开发效率" data-en="Familiar with Python / Java / SQL, FastAPI / Vue; proficient with Claude Code / Cursor">熟悉 Python / Java / SQL，了解 FastAPI / Vue；熟练使用 Claude Code / Cursor 等 AI 编程工具提升开发效率</div>
         </div>
-
-      </div>
-    </div>
-
-    <!-- Group: 东亚银行 -->
-    <div class="project-group">
-      <div class="project-group-header" onclick="toggleGroup(this)">
-        <div>
-          <span class="project-group-title" data-zh="东亚银行 · AI 产品" data-en="Bank of East Asia · AI Products">东亚银行 · AI 产品</span>
-          <span class="project-group-count">3 <span data-zh="个项目" data-en="projects">个项目</span></span>
+        <div class="skill-card">
+          <div class="skill-card-title" data-zh="语言能力" data-en="Languages">语言能力</div>
+          <div class="skill-card-desc" data-zh="CET-4 · CET-6，可流畅阅读英文技术文档与论文" data-en="CET-4 · CET-6, fluent in reading English technical documents and papers">CET-4 · CET-6，可流畅阅读英文技术文档与论文</div>
         </div>
-        <span class="project-group-arrow">▼</span>
-      </div>
-      <div class="project-group-body">
-
-        <div class="project-card">
-          <h3 class="project-name" data-zh="营运智能机器人知识库 | RAG 链路设计与多模态调优" data-en="Operations Robot Knowledge Base | RAG Pipeline & Multimodal Tuning">营运智能机器人知识库 | RAG 链路设计与多模态调优</h3>
-          <p class="project-summary" data-zh="银行营运人员频繁查询规程文档，现有问答系统对表格、流程图理解不足，准确率仅 80.1%。" data-en="Bank operations staff frequently query procedure documents. Existing Q&A system lacks table/flowchart understanding, at 80.1% accuracy.">银行营运人员频繁查询规程文档，现有问答系统对表格、流程图理解不足，准确率仅 80.1%。</p>
-          <ul class="project-bullets">
-            <li data-zh="主导 RAG 链路全流程产品决策，涵盖 OCR 解析策略、切块方案、嵌入模型选型" data-en="Led end-to-end product decisions for RAG pipeline: OCR parsing strategy, chunking approach, embedding model selection">主导 RAG 链路全流程产品决策，涵盖 OCR 解析策略、切块方案、嵌入模型选型</li>
-            <li data-zh="引入多模态大模型（视觉 + 文本融合）解决表格与流程图理解不足" data-en="Introduced multimodal LLM (vision + text fusion) to address table and flowchart understanding gaps">引入多模态大模型（视觉 + 文本融合）解决表格与流程图理解不足</li>
-          </ul>
-          <p class="project-insight" data-zh="💡 选择多模态而非纯文本 RAG：银行规程包含大量表格和流程图，纯文本无法理解视觉信息" data-en="💡 Chose multimodal over pure-text RAG: bank procedures contain extensive tables and flowcharts that pure text cannot interpret">💡 选择多模态而非纯文本 RAG：银行规程包含大量表格和流程图，纯文本无法理解视觉信息</p>
-          <div class="project-result" data-zh="📊 POC 准确率 92.5%（+12.4%），表格失败案例下降 50%，已上线并沉淀调优 SOP" data-en="📊 POC accuracy 92.5% (+12.4%), table failures down 50%, launched with full tuning SOP"> POC 准确率 92.5%（+12.4%），表格失败案例下降 50%，已上线并沉淀调优 SOP</div>
-          <div class="project-tags">
-            <span class="project-tag">RAG</span>
-            <span class="project-tag" data-zh="多模态 AI" data-en="Multimodal AI">多模态 AI</span>
-            <span class="project-tag">OCR</span>
-            <span class="project-tag" data-zh="已上线" data-en="Launched">已上线</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3 class="project-name" data-zh="联网检索 MCP | 内网实时外部信息获取服务" data-en="Web Search MCP | Real-time External Info for Bank Intranet">联网检索 MCP | 内网实时外部信息获取服务</h3>
-          <p class="project-summary" data-zh="银行内网物理隔离导致员工无法获取实时外部信息，需基于 MCP 协议落地合规联网检索服务。" data-en="Bank intranet's physical isolation prevents real-time external info access. Needed MCP-based compliant web search service.">银行内网物理隔离导致员工无法获取实时外部信息，需基于 MCP 协议落地合规联网检索服务。</p>
-          <ul class="project-bullets">
-            <li data-zh="覆盖请求合规校验、响应安全检测、全链路审计日志，支持 ≥500 QPS 并发" data-en="Covers request compliance validation, response security detection, full-chain audit logging. Supports ≥500 QPS concurrency">覆盖请求合规校验、响应安全检测、全链路审计日志，支持 ≥500 QPS 并发</li>
-          </ul>
-          <div class="project-tags">
-            <span class="project-tag">MCP Protocol</span>
-            <span class="project-tag" data-zh="金融合规" data-en="Compliance">金融合规</span>
-            <span class="project-tag" data-zh="安全检测" data-en="Security">安全检测</span>
-            <span class="project-tag">500+ QPS</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3 class="project-name" data-zh="AI 员工平台 | Agent 工作流与智能办公自动化" data-en="AI Employee Platform | Agent Workflow & Office Automation">AI 员工平台 | Agent 工作流与智能办公自动化</h3>
-          <p class="project-summary" data-zh="银行内部文档、PPT、Excel 等办公内容依赖人工生成，效率低且质量不稳定。" data-en="Bank internal documents, PPTs, and Excel files relied on manual generation with low efficiency and inconsistent quality.">银行内部文档、PPT、Excel 等办公内容依赖人工生成，效率低且质量不稳定。</p>
-          <ul class="project-bullets">
-            <li data-zh="设计多工具调用与任务编排工作流，AI 员工「小娅」已上线，支持文档、PPT、Excel 自动生成" data-en="Designed multi-tool orchestration workflow. AI employee &quot;Xiaoya&quot; launched, supporting automated document, PPT, and Excel generation">设计多工具调用与任务编排工作流，AI 员工「小娅」已上线，支持文档、PPT、Excel 自动生成</li>
-          </ul>
-          <p class="project-insight" data-zh=" 选择 Agent 架构而非单一模型：办公内容生成需多步骤协作，单一模型无法端到端完成" data-en="💡 Chose Agent architecture over single model: office content generation requires multi-step collaboration, single model can't handle end-to-end">💡 选择 Agent 架构而非单一模型：办公内容生成需多步骤协作，单一模型无法端到端完成</p>
-          <div class="project-tags">
-            <span class="project-tag">AI Agent</span>
-            <span class="project-tag" data-zh="工作流" data-en="Workflow">工作流</span>
-            <span class="project-tag" data-zh="办公自动化" data-en="Office Automation">办公自动化</span>
-            <span class="project-tag" data-zh="已上线" data-en="Launched">已上线</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Group: 开源 -->
-    <div class="project-group">
-      <div class="project-group-header" onclick="toggleGroup(this)">
-        <div>
-          <span class="project-group-title" data-zh="开源 / 研究项目" data-en="Open Source / Research Projects">开源 / 研究项目</span>
-          <span class="project-group-count">2 <span data-zh="个项目" data-en="projects">个项目</span></span>
-        </div>
-        <span class="project-group-arrow">▼</span>
-      </div>
-      <div class="project-group-body">
-
-        <div class="project-card">
-          <h3 class="project-name" data-zh="律智助手 | AI 法律咨询平台" data-en="律智助手 | AI Legal Assistant Platform">律智助手 | AI 法律咨询平台</h3>
-          <p class="project-summary" data-zh="面向普通用户的 AI 法律应用闭环，覆盖法律问答、法条检索、合同生成/审查与模拟法庭预演。" data-en="AI legal application loop for general users: Q&A, statute search, contract generation/review, and mock trial simulation.">面向普通用户的 AI 法律应用闭环，覆盖法律问答、法条检索、合同生成/审查与模拟法庭预演。</p>
-          <ul class="project-bullets">
-            <li data-zh="封装 DeepSeek API 与腾讯元器 API，实现多工具路由与流式响应解析" data-en="Encapsulated DeepSeek and Tencent Yuanqi APIs, implemented multi-tool routing and streaming response parsing">封装 DeepSeek API 与腾讯元器 API，实现多工具路由与流式响应解析</li>
-            <li data-zh="独立落地模拟法庭模块，支持角色选择、环节预演与 AI 实时反馈" data-en="Independently built mock trial module with role selection, scenario rehearsal, and real-time AI feedback">独立落地模拟法庭模块，支持角色选择、环节预演与 AI 实时反馈</li>
-          </ul>
-          <div class="project-result" data-zh=" 中国大学生外包大赛 D 类赛道（中部赛区）三等奖" data-en="🏆 3rd prize, China Collegiate Outsourcing Competition Class D (Central Region)">🏆 中国大学生外包大赛 D 类赛道（中部赛区）三等奖</div>
-          <div class="project-tags">
-            <span class="project-tag">DeepSeek API</span>
-            <span class="project-tag" data-zh="腾讯元器" data-en="Tencent Yuanqi">腾讯元器</span>
-            <span class="project-tag">JWT Auth</span>
-            <span class="project-tag" data-zh="开源" data-en="Open Source">开源</span>
-            <a href="https://github.com/yara1006/lvzhi_assistant" target="_blank" style="color:var(--accent);font-size:13px;font-weight:600;text-decoration:none;margin-left:auto;">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3 class="project-name" data-zh="欺诈对话对抗性攻防与鲁棒性评估" data-en="Fraud Dialogue Adversarial Attack & Robustness Evaluation">欺诈对话对抗性攻防与鲁棒性评估</h3>
-          <p class="project-summary" data-zh="基于 PromptAttack 构建中文诈骗通话文本的 LLM 对抗样本生成与鲁棒性评估流程。" data-en="Built LLM adversarial sample generation and robustness evaluation pipeline based on PromptAttack for Chinese fraud call text detection.">基于 PromptAttack 构建中文诈骗通话文本的 LLM 对抗样本生成与鲁棒性评估流程。</p>
-          <ul class="project-bullets">
-            <li data-zh="微调 RoBERTa 诈骗文本二分类模型；优化 PromptAttack 支持中文攻击 Prompt" data-en="Fine-tuned RoBERTa fraud text binary classifier; optimized PromptAttack for Chinese attack prompts">微调 RoBERTa 诈骗文本二分类模型；优化 PromptAttack 支持中文攻击 Prompt</li>
-            <li data-zh="封装 Qwen API，生成语义保持的高隐蔽性对抗样本" data-en="Encapsulated Qwen API to generate semantically-preserving high-stealth adversarial samples">封装 Qwen API，生成语义保持的高隐蔽性对抗样本</li>
-          </ul>
-          <div class="project-result" data-zh="📊 Qwen 检测准确率 95.2% → 78.3%（BERTScore > 0.94）" data-en="📊 Qwen detection accuracy 95.2% → 78.3% (BERTScore > 0.94)"> Qwen 检测准确率 95.2% → 78.3%（BERTScore > 0.94）</div>
-          <div class="project-tags">
-            <span class="project-tag">RoBERTa</span>
-            <span class="project-tag">Qwen</span>
-            <span class="project-tag">PromptAttack</span>
-            <span class="project-tag">BERTScore</span>
-            <a href="https://github.com/yara1006/NLP_project" target="_blank" style="color:var(--accent);font-size:13px;font-weight:600;text-decoration:none;margin-left:auto;">GitHub →</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </section>
-
-  <!-- Skills -->
-  <section class="section" id="skills">
-    <h2 class="section-title" data-zh="技能与其他" data-en="Skills & Others">技能与其他</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-card-title" data-zh="大模型技术" data-en="LLM & AI Technology">大模型技术</div>
-        <div class="skill-card-desc" data-zh="熟悉 AI Agent 设计、RAG 链路搭建、Prompt Engineering、MCP 协议；有 DeepSeek / Qwen / Claude 等主流 LLM 的 API 集成与评测经验" data-en="Proficient in AI Agent design, RAG pipeline, Prompt Engineering, MCP Protocol; experienced with DeepSeek / Qwen / Claude API integration and evaluation">熟悉 AI Agent 设计、RAG 链路搭建、Prompt Engineering、MCP 协议；有 DeepSeek / Qwen / Claude 等主流 LLM 的 API 集成与评测经验</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-title" data-zh="产品能力" data-en="Product Skills">产品能力</div>
-        <div class="skill-card-desc" data-zh="具备 AI 智能体从 0 到 1 产品设计经验，熟练使用 Axure / Figma 等原型工具，有需求分析、竞品调研与 PRD 撰写经验" data-en="Experience in end-to-end AI agent product design; proficient with Axure / Figma; skilled in requirements analysis, competitive research, and PRD writing">具备 AI 智能体从 0 到 1 产品设计经验，熟练使用 Axure / Figma 等原型工具，有需求分析、竞品调研与 PRD 撰写经验</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-title" data-zh="工程基础" data-en="Engineering">工程基础</div>
-        <div class="skill-card-desc" data-zh="熟悉 Python / Java / SQL，了解 FastAPI / Vue；熟练使用 Claude Code / Cursor 等 AI 编程工具提升开发效率" data-en="Familiar with Python / Java / SQL, FastAPI / Vue; proficient with Claude Code / Cursor and other AI-assisted development tools">熟悉 Python / Java / SQL，了解 FastAPI / Vue；熟练使用 Claude Code / Cursor 等 AI 编程工具提升开发效率</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-title" data-zh="语言能力" data-en="Languages">语言能力</div>
-        <div class="skill-card-desc" data-zh="CET-4 · CET-6，可流畅阅读英文技术文档与论文" data-en="CET-4 · CET-6, fluent in reading English technical documents and papers">CET-4 · CET-6，可流畅阅读英文技术文档与论文</div>
       </div>
     </div>
   </section>
 
-  <!-- Insights -->
-  <section class="section" id="insights">
-    <h2 class="section-title" data-zh="AI 认知与观点" data-en="AI Insights">AI 认知与观点</h2>
-
+  <!-- INSIGHTS -->
+  <section class="block" id="insights">
+    <div class="sec-head">
+      <h2 class="sec-title" data-zh="AI 认知与观点" data-en="AI Insights">AI 认知与观点</h2>
+    </div>
     <div class="insight-card">
       <div class="insight-num">01</div>
       <h3 class="insight-title" data-zh="AI 产品经理的核心能力" data-en="Core Competencies of AI PM">AI 产品经理的核心能力</h3>
-      <p class="insight-text" data-zh="AI 产品经理需要在「技术理解力」和「商业敏感度」之间找到平衡。不仅要理解大模型的能力边界，更要能判断哪些场景真正需要 AI，哪些只是伪需求。" data-en="AI PMs need to balance technical understanding with business acumen. Beyond understanding LLM capabilities, the key is judging which scenarios truly need AI versus false needs.">AI 产品经理需要在「技术理解力」和「商业敏感度」之间找到平衡。不仅要理解大模型的能力边界，更要能判断哪些场景真正需要 AI，哪些只是伪需求。</p>
+      <p class="insight-text" data-zh="AI 产品经理需要在「技术理解力」和「商业敏感度」之间找到平衡。不仅要理解大模型的能力边界，更要能判断哪些场景真正需要 AI，哪些只是伪需求。" data-en="AI PMs need to balance technical understanding with business acumen. Judge which scenarios truly need AI versus false needs.">AI 产品经理需要在「技术理解力」和「商业敏感度」之间找到平衡。不仅要理解大模型的能力边界，更要能判断哪些场景真正需要 AI，哪些只是伪需求。</p>
     </div>
-
     <div class="insight-card">
       <div class="insight-num">02</div>
       <h3 class="insight-title" data-zh="RAG 不是银弹" data-en="RAG is Not a Silver Bullet">RAG 不是银弹</h3>
-      <p class="insight-text" data-zh="在银行 RAG 项目中，我发现很多团队把 RAG 当成万能解法。实际上，RAG 适合知识密集型场景，但对于需要深度推理的任务，可能需要结合 Agent 工作流或微调。产品经理需要帮助团队选择合适的技术路线。" data-en="In my banking RAG project, many teams treated RAG as a universal solution. RAG suits knowledge-intensive scenarios, but deep reasoning tasks may need Agent workflows or fine-tuning. PMs must help teams choose the right approach.">在银行 RAG 项目中，我发现很多团队把 RAG 当成万能解法。实际上，RAG 适合知识密集型场景，但对于需要深度推理的任务，可能需要结合 Agent 工作流或微调。产品经理需要帮助团队选择合适的技术路线。</p>
+      <p class="insight-text" data-zh="在银行 RAG 项目中，我发现很多团队把 RAG 当成万能解法。实际上，RAG 适合知识密集型场景，但对于需要深度推理的任务，可能需要结合 Agent 工作流或微调。" data-en="In my banking RAG project, many teams treated RAG as universal solution. RAG suits knowledge-intensive scenarios, but deep reasoning tasks may need Agent workflows or fine-tuning.">在银行 RAG 项目中，我发现很多团队把 RAG 当成万能解法。实际上，RAG 适合知识密集型场景，但对于需要深度推理的任务，可能需要结合 Agent 工作流或微调。</p>
     </div>
-
     <div class="insight-card">
       <div class="insight-num">03</div>
       <h3 class="insight-title" data-zh="AI 产品的落地挑战" data-en="Challenges in AI Product Deployment">AI 产品的落地挑战</h3>
-      <p class="insight-text" data-zh="AI 产品从 Demo 到上线，最大的挑战不是技术，而是合规、安全和用户体验的平衡。在金融行业，这一点尤其明显。产品经理需要在创新与风险之间找到可行的路径。" data-en="The biggest challenge in deploying AI products isn't technology — it's balancing compliance, security, and user experience. Especially in finance. PMs need to find viable paths between innovation and risk.">AI 产品从 Demo 到上线，最大的挑战不是技术，而是合规、安全和用户体验的平衡。在金融行业，这一点尤其明显。产品经理需要在创新与风险之间找到可行的路径。</p>
+      <p class="insight-text" data-zh="AI 产品从 Demo 到上线，最大的挑战不是技术，而是合规、安全和用户体验的平衡。在金融行业，这一点尤其明显。" data-en="The biggest challenge isn't technology — it's balancing compliance, security, and user experience. Especially in finance.">AI 产品从 Demo 到上线，最大的挑战不是技术，而是合规、安全和用户体验的平衡。在金融行业，这一点尤其明显。</p>
     </div>
   </section>
 
-  <!-- Resume -->
-  <section class="section" id="resume">
+  <!-- RESUME -->
+  <section class="block" id="resume">
     <div class="resume-cta">
       <h3 data-zh="下载简历" data-en="Download Resume">下载简历</h3>
       <p data-zh="了解更多关于我的工作经历、项目案例和技能背景。" data-en="Learn more about my work experience, project cases, and skill background.">了解更多关于我的工作经历、项目案例和技能背景。</p>
-      <a href="resume.pdf" download class="btn btn-primary" data-zh=" 下载 PDF 简历" data-en=" Download PDF Resume">📄 下载 PDF 简历</a>
+      <a href="resume.pdf" download class="btn-primary" data-zh="📄 下载 PDF 简历" data-en="📄 Download PDF Resume"> 下载 PDF 简历</a>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-links">
-      <a href="https://github.com/yara1006" target="_blank">GitHub</a>
-      <a href="mailto:hanbingyang2004@qq.com">Email</a>
-    </div>
-    <p data-zh="Hannah · 2026" data-en="Hannah · 2026">Hannah · 2026</p>
-  </footer>
-
 </main>
+
+<footer>
+  <div class="footer-links">
+    <a href="https://github.com/yara1006" target="_blank">GitHub</a>
+    <a href="mailto:hanbingyang2004@qq.com">Email</a>
+  </div>
+  <p>Hannah · 2026</p>
+</footer>
 
 <script>
 let currentLang = 'zh';
@@ -960,13 +595,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
-
-function toggleGroup(header) {
-  const body = header.nextElementSibling;
-  const isOpen = body.classList.contains('open');
-  header.classList.toggle('active');
-  body.classList.toggle('open');
-}
 </script>
 </body>
 </html>

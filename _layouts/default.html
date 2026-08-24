@@ -6,123 +6,130 @@
 <title>{{ page.title }} | Hannah</title>
 <link rel="icon" href="{{ '/favicon.svg' | relative_url }}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root { --bg:#fafafa; --card:#fff; --text:#1a1a2e; --text-secondary:#555770; --text-muted:#8b8fa3; --accent:#2563eb; --accent-light:#dbeafe; --border:#e8e8ee; --radius:10px; }
-[data-theme="dark"] { --bg:#0f0f14; --card:#1a1a24; --text:#e8e8f0; --text-secondary:#a0a0b8; --text-muted:#6b6b80; --accent:#60a5fa; --accent-light:#1e3a5f; --border:#2a2a3a; }
-*{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
-body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+:root {
+  --bg: #ffffff; --bg-soft: #f8f9fc; --bg-soft-2: #eff2f7;
+  --ink: #121317; --ink-soft: #45474d; --ink-faint: #7a7e87;
+  --line: #e6eaf0; --line-soft: #eef1f5;
+  --accent: #0b57d0; --accent-soft: #e8f0fe;
+  --radius-lg: 24px; --radius-md: 16px; --radius-sm: 10px;
+  --font: 'Outfit', 'Noto Sans SC', -apple-system, sans-serif;
+  --nav-h: 56px;
+}
+[data-theme="dark"] {
+  --bg: #0a0b0d; --bg-soft: #14161a; --bg-soft-2: #1c1f24;
+  --ink: #f0f0f2; --ink-soft: #b8bac0; --ink-faint: #7a7e87;
+  --line: #2a2d33; --line-soft: #1f2227;
+  --accent: #4a9eff; --accent-soft: #1a2d4a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 16px);overflow-x:clip}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:15px;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;text-underline-offset:3px}
+strong{font-weight:600}.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px}
-[data-theme="dark"] nav{background:rgba(15,15,20,0.85)}
-.nav-inner{max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
-.nav-logo{font-family:'Crimson Pro','Noto Serif SC',serif;font-size:18px;font-weight:700;color:var(--text);text-decoration:none}
-.nav-right{display:flex;align-items:center;gap:20px}
-.nav-links{display:flex;gap:20px;list-style:none}
-.nav-links a{color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:500;transition:0.15s}
-.nav-links a:hover{color:var(--text)}
-.nav-toggles{display:flex;align-items:center;gap:6px}
-.lang-toggle{display:flex;background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden}
-.lang-btn{padding:4px 10px;font-size:12px;font-weight:600;border:none;background:transparent;color:var(--text-muted);cursor:pointer;transition:0.15s;font-family:inherit}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);background:rgba(255,255,255,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+[data-theme="dark"] .nav{background:rgba(10,11,13,0.85)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 28px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:14.5px;font-weight:500;letter-spacing:-.01em;color:var(--ink)}.nav-logo:hover{text-decoration:none;opacity:.7}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{font-size:13px;font-weight:400;color:var(--ink-soft);letter-spacing:.01em;transition:color .2s;padding:6px 0;position:relative}
+.nav-links a:hover{color:var(--ink);text-decoration:none}
+.nav-links a::after{content:'';position:absolute;left:0;right:0;bottom:2px;height:1.5px;border-radius:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(.2,.7,.3,1)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-toggles{display:flex;align-items:center;gap:8px}
+.lang-toggle{display:flex;background:var(--bg-soft);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.lang-btn{padding:4px 10px;font-size:12px;font-weight:600;border:none;background:transparent;color:var(--ink-faint);cursor:pointer;transition:.15s;font-family:inherit}
 .lang-btn.active{background:var(--accent);color:#fff}
-.theme-btn{width:32px;height:32px;border-radius:6px;border:1px solid var(--border);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:0.15s}
+.theme-btn{width:32px;height:32px;border-radius:6px;border:1px solid var(--line);background:var(--bg-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:.15s}
 .theme-btn:hover{border-color:var(--accent)}
 .theme-icon-dark{display:none}
 [data-theme="dark"] .theme-icon-light{display:none}
 [data-theme="dark"] .theme-icon-dark{display:inline}
 
-main{max-width:800px;margin:0 auto;padding:0 24px}
+main{max-width:1120px;margin:0 auto;padding:0 28px}
 
-.breadcrumb{font-size:13px;color:var(--text-muted);margin-top:80px;margin-bottom:12px}
-.breadcrumb a{color:var(--text-muted);text-decoration:none}
-.breadcrumb a:hover{color:var(--accent)}
+.breadcrumb{font-size:13px;color:var(--ink-faint);margin-top:80px;margin-bottom:12px}
+.breadcrumb a{color:var(--ink-faint);text-decoration:none}.breadcrumb a:hover{color:var(--accent)}
 
 .page-header{padding:20px 0 32px}
-.page-header h1{font-family:'Crimson Pro','Noto Serif SC',serif;font-size:36px;font-weight:700;margin-bottom:8px}
-.page-header p{font-size:15px;color:var(--text-secondary)}
+.page-header h1{font-size:clamp(28px,3.4vw,40px);font-weight:400;letter-spacing:-.035em;line-height:1.08;margin-bottom:8px}
+.page-header p{font-size:15px;color:var(--ink-soft)}
 
 .timeline{padding:20px 0 60px;position:relative}
-.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border)}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--line)}
 .tl-item{position:relative;padding-left:28px;margin-bottom:32px}
 .tl-item::before{content:'';position:absolute;left:-5px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
-.tl-date{font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:4px}
-.tl-title{font-family:'Crimson Pro','Noto Serif SC',serif;font-size:18px;font-weight:700;margin-bottom:4px}
-.tl-award{font-size:14px;font-weight:600;color:var(--accent);margin-bottom:8px}
-.tl-desc{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:10px}
-.tl-link{display:inline-flex;align-items:center;gap:4px;color:var(--accent);font-size:13px;font-weight:600;text-decoration:none}
+.tl-date{font-size:12px;color:var(--ink-faint);font-weight:600;margin-bottom:4px}
+.tl-title{font-size:18px;font-weight:500;letter-spacing:-.015em;margin-bottom:4px}
+.tl-award{font-size:14px;font-weight:500;color:var(--accent);margin-bottom:8px}
+.tl-desc{font-size:14px;color:var(--ink-soft);line-height:1.7;margin-bottom:10px}
+.tl-link{display:inline-flex;align-items:center;gap:4px;color:var(--accent);font-size:13px;font-weight:500;text-decoration:none}
 .tl-link:hover{text-decoration:underline}
 
 .comp-header{padding-bottom:32px}
-.comp-meta{display:flex;gap:12px;margin-bottom:12px;font-size:13px;color:var(--text-muted)}
-.comp-award{color:var(--accent);font-weight:600}
-.comp-title{font-family:'Crimson Pro','Noto Serif SC',serif;font-size:32px;font-weight:700;margin-bottom:4px;line-height:1.3}
-.comp-title-en{font-size:16px;color:var(--text-secondary);font-weight:400}
+.comp-meta{display:flex;gap:12px;margin-bottom:12px;font-size:13px;color:var(--ink-faint)}
+.comp-award{color:var(--accent);font-weight:500}
+.comp-title{font-size:clamp(28px,3.4vw,40px);font-weight:400;letter-spacing:-.035em;line-height:1.08;margin-bottom:4px}
+.comp-title-en{font-size:16px;color:var(--ink-soft);font-weight:400}
+.comp-section{padding:24px 0;border-top:1px solid var(--line)}
+.comp-section h2{font-size:22px;font-weight:500;letter-spacing:-.025em;margin-bottom:16px}
+.comp-content{font-size:15px;color:var(--ink-soft);line-height:1.8}
+.comp-content ul{margin:12px 0 12px 20px}.comp-content li{margin-bottom:8px}
+.comp-reflection{background:var(--bg-soft);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius-md);padding:24px;font-size:14px;color:var(--ink-soft);line-height:1.8}
+.comp-tags{display:flex;flex-wrap:wrap;gap:8px;padding:24px 0;border-top:1px solid var(--line)}
+.comp-tag{padding:4px 14px;background:var(--accent-soft);color:var(--accent);border-radius:100px;font-size:13px;font-weight:500}
 
-.comp-section{padding:24px 0;border-top:1px solid var(--border)}
-.comp-section h2{font-family:'Crimson Pro','Noto Serif SC',serif;font-size:22px;font-weight:700;margin-bottom:16px}
-.comp-content{font-size:15px;color:var(--text-secondary);line-height:1.8}
-.comp-content ul{margin:12px 0 12px 20px}
-.comp-content li{margin-bottom:8px}
-.comp-content-en{margin-top:16px;padding-top:16px;border-top:1px dashed var(--border);font-size:14px;color:var(--text-muted)}
-
-.comp-reflection{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:24px;font-size:14px;color:var(--text-secondary);line-height:1.8}
-
-.comp-tags{display:flex;flex-wrap:wrap;gap:8px;padding:24px 0;border-top:1px solid var(--border)}
-.comp-tag{padding:4px 14px;background:var(--accent-light);color:var(--accent);border-radius:100px;font-size:13px;font-weight:500}
-
-/* Articles */
 .articles-list{padding:20px 0 60px;display:flex;flex-direction:column;gap:16px}
-.article-card{display:block;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-decoration:none;color:var(--text);transition:0.15s}
+.article-card{display:block;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius-md);padding:24px;text-decoration:none;color:var(--ink);transition:.15s}
 .article-card:hover{border-color:var(--accent)}
-.article-card-date{font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:8px}
-.article-card-title{font-family:'Crimson Pro','Noto Serif SC',serif;font-size:18px;font-weight:700;margin-bottom:8px}
-.article-card-excerpt{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:12px}
-.article-card-category{display:inline-block;padding:3px 10px;background:var(--accent-light);color:var(--accent);border-radius:100px;font-size:12px;font-weight:500}
+.article-card-date{font-size:12px;color:var(--ink-faint);font-weight:600;margin-bottom:8px}
+.article-card-title{font-size:18px;font-weight:500;letter-spacing:-.015em;margin-bottom:8px}
+.article-card-excerpt{font-size:14px;color:var(--ink-soft);line-height:1.7;margin-bottom:12px}
+.article-card-category{display:inline-block;padding:3px 10px;background:var(--accent-soft);color:var(--accent);border-radius:100px;font-size:12px;font-weight:500}
 
 .article-header{padding-bottom:24px}
-.article-meta{display:flex;gap:12px;margin-bottom:12px;font-size:13px;color:var(--text-muted)}
-.article-category{color:var(--accent);font-weight:600}
-.article-title{font-family:'Crimson Pro','Noto Serif SC',serif;font-size:32px;font-weight:700;margin-bottom:4px;line-height:1.3}
-.article-content{padding:24px 0;border-top:1px solid var(--border);font-size:15px;color:var(--text-secondary);line-height:1.8}
-.article-content h2{font-family:'Crimson Pro','Noto Serif SC',serif;font-size:22px;font-weight:700;margin:24px 0 12px;color:var(--text)}
-.article-content h3{font-size:18px;font-weight:600;margin:20px 0 10px;color:var(--text)}
+.article-meta{display:flex;gap:12px;margin-bottom:12px;font-size:13px;color:var(--ink-faint)}
+.article-category{color:var(--accent);font-weight:500}
+.article-title{font-size:clamp(28px,3.4vw,40px);font-weight:400;letter-spacing:-.035em;line-height:1.08;margin-bottom:4px}
+.article-content{padding:24px 0;border-top:1px solid var(--line);font-size:15px;color:var(--ink-soft);line-height:1.8}
+.article-content h2{font-size:22px;font-weight:500;margin:24px 0 12px;color:var(--ink)}
+.article-content h3{font-size:18px;font-weight:600;margin:20px 0 10px;color:var(--ink)}
 .article-content p{margin-bottom:16px}
-.article-content ul,.article-content ol{margin:12px 0 16px 20px}
-.article-content li{margin-bottom:8px}
-.article-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:16px 0;background:var(--card);border-radius:0 var(--radius) var(--radius) 0}
-.article-content code{padding:2px 6px;background:var(--card);border-radius:4px;font-size:13px;font-family:'JetBrains Mono',monospace}
-.article-content pre{background:var(--card);padding:16px;border-radius:var(--radius);overflow-x:auto;margin:16px 0}
+.article-content ul,.article-content ol{margin:12px 0 16px 20px}.article-content li{margin-bottom:8px}
+.article-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:16px 0;background:var(--bg-soft);border-radius:0 var(--radius-md) var(--radius-md) 0}
+.article-content code{padding:2px 6px;background:var(--bg-soft);border-radius:4px;font-size:13px;font-family:'JetBrains Mono',monospace}
+.article-content pre{background:var(--bg-soft);padding:16px;border-radius:var(--radius-md);overflow-x:auto;margin:16px 0}
 .article-content pre code{background:none;padding:0}
+.article-tags{display:flex;flex-wrap:wrap;gap:8px;padding:24px 0;border-top:1px solid var(--line)}
+.article-tag{padding:4px 14px;background:var(--accent-soft);color:var(--accent);border-radius:100px;font-size:13px;font-weight:500}
 
-.article-tags{display:flex;flex-wrap:wrap;gap:8px;padding:24px 0;border-top:1px solid var(--border)}
-.article-tag{padding:4px 14px;background:var(--accent-light);color:var(--accent);border-radius:100px;font-size:13px;font-weight:500}
-
-.nav-bottom{display:flex;justify-content:space-between;padding:32px 0;border-top:1px solid var(--border);margin-top:32px}
-.nav-bottom a{font-size:14px;color:var(--accent);text-decoration:none;font-weight:600}
+.nav-bottom{display:flex;justify-content:space-between;padding:32px 0;border-top:1px solid var(--line);margin-top:32px}
+.nav-bottom a{font-size:14px;color:var(--accent);text-decoration:none;font-weight:500}
 .nav-bottom a:hover{text-decoration:underline}
 
-footer{padding:40px 0;border-top:1px solid var(--border);text-align:center;font-size:13px;color:var(--text-muted)}
+footer{padding:40px 0;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--ink-faint)}
 
-@media(max-width:640px){.comp-title{font-size:24px}.nav-links{display:none}}
+@media(max-width:768px){.comp-title{font-size:24px}.nav-links{display:none}}
 </style>
 </head>
 <body>
-<nav>
+<nav class="nav">
   <div class="nav-inner">
     <a href="{{ '/' | relative_url }}" class="nav-logo">Hannah</a>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="{{ '/' | relative_url }}">主页</a></li>
-        <li><a href="{{ '/competitions/' | relative_url }}">比赛</a></li>
-        <li><a href="{{ '/articles/' | relative_url }}">想法</a></li>
-      </ul>
-      <div class="nav-toggles">
-        <div class="lang-toggle">
-          <button class="lang-btn active" data-lang="zh">中</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
-        <button class="theme-btn" id="themeToggle"><span class="theme-icon-light">🌙</span><span class="theme-icon-dark">☀️</span></button>
+    <div class="nav-links">
+      <li><a href="{{ '/' | relative_url }}">主页</a></li>
+      <li><a href="{{ '/competitions/' | relative_url }}">比赛</a></li>
+      <li><a href="{{ '/articles/' | relative_url }}">想法</a></li>
+    </div>
+    <div class="nav-toggles">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="zh">中</button>
+        <button class="lang-btn" data-lang="en">EN</button>
       </div>
+      <button class="theme-btn" id="themeToggle"><span class="theme-icon-light"></span><span class="theme-icon-dark">☀️</span></button>
     </div>
   </div>
 </nav>
